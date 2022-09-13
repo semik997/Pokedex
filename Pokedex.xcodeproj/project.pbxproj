@@ -58,6 +58,13 @@
 		2F5A877828D0E49C0072A6D0 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				2F5A879628D0E97A0072A6D0 /* Constants */,
+				2F5A879528D0E9700072A6D0 /* API */,
+				2F5A879428D0E9670072A6D0 /* CoreData */,
+				2F5A879328D0E9580072A6D0 /* Extention */,
+				2F5A879228D0E94B0072A6D0 /* Delegate */,
+				2F5A879128D0E9400072A6D0 /* ViewModel */,
+				2F5A879028D0E9390072A6D0 /* Model */,
 				2F5A877928D0E49C0072A6D0 /* AppDelegate.swift */,
 				2F5A877B28D0E49C0072A6D0 /* SceneDelegate.swift */,
 				2F5A877D28D0E49C0072A6D0 /* ViewController.swift */,
@@ -68,6 +75,55 @@
 				2F5A878228D0E49C0072A6D0 /* Pokedex.xcdatamodeld */,
 			);
 			path = Pokedex;
+			sourceTree = "<group>";
+		};
+		2F5A879028D0E9390072A6D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2F5A879128D0E9400072A6D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2F5A879228D0E94B0072A6D0 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		2F5A879328D0E9580072A6D0 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		2F5A879428D0E9670072A6D0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2F5A879528D0E9700072A6D0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		2F5A879628D0E97A0072A6D0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
