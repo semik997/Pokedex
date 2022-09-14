@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
-struct ApiManager {
+struct ListOfPokemonAPIManager {
     
     // MARK: - Api request
     func fetchCurrent(onCompletion: (([Pokemon.PokemonModel]) -> Void)?) {
-        let urlString = "\(linkAPI)"
+        let urlString = "\(listOfPokemonLinkAPI)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in

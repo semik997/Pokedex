@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PokemonProtokol: AnyObject {
-    func selectCell(_id: Double, name: String, imgage: String)
+    func selectCell(_id: Int, name: String, imgage: String)
 }
 
 class PokemonViewCell: UITableViewCell {

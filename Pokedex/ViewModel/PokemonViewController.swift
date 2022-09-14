@@ -8,26 +8,32 @@
 import UIKit
 
 class PokemonViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    private var apiManager = ApiManager()
+    
+    private var apiManager = ListOfPokemonAPIManager()
     var pokemons: [Pokemon.PokemonModel] = [] {
         didSet {
             DispatchQueue.main.async { [self] in
+                filtredPokemon = pokemons
                 tableView.reloadData()
             }
         }
     }
+    var filtredPokemon: [Pokemon.PokemonModel] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleMainLabel: UILabel!
     @IBOutlet weak var pokemonMainSearchBar: UISearchBar!
-    @IBOutlet weak var mainPokemonTableView: UITableView!
     @IBOutlet weak var teamPokemonOptionsButton: UIButton!
     @IBOutlet weak var favoritePokemonOptionsButton: UIButton!
     @IBOutlet weak var countTeamPokemonLabel: UILabel!
     @IBOutlet weak var countFavoritePokemoneLabel: UILabel!
     
     
+    
+    
+    
+    @IBAction func sortedMainButton(_ sender: UIButton) {
+    }
     
     @IBAction func teamPokemonButton(_ sender: UIButton) {
     }
@@ -41,27 +47,25 @@ class PokemonViewController: UIViewController, UITableViewDataSource, UITableVie
             currentPokemonData in self?.pokemons = currentPokemonData })
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
+        pokemonMainSearchBar.delegate = self
     }
-    
-    
     
     
     // MARK: - Displaying data in a cell
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemons.count
+        return filtredPokemon.count
     }
-
+    
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell",
                                                        for: indexPath) as? PokemonViewCell
         else { return UITableViewCell()}
         cell.delegate = self
-        if pokemons.count != 0 {
+        if filtredPokemon.count != 0 {
             
-            cell.loadData(pokemon: pokemons[indexPath.row])
+            cell.loadData(pokemon: filtredPokemon[indexPath.row])
         } else {
             cell.pokemonNameLabel.text = "Not found"
         }
@@ -69,7 +73,7 @@ class PokemonViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func buttonOptions() {
-
+        
         teamPokemonOptionsButton.backgroundColor = .systemOrange
         teamPokemonOptionsButton.layer.cornerRadius = 10
         
@@ -78,9 +82,27 @@ class PokemonViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 }
 
+// MARK: - Setting search bar
+
+extension PokemonViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filtredPokemon = searchText.isEmpty ? pokemons : pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
+            return item.name.range(of: searchText, options: .caseInsensitive) != nil
+        }
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        self.pokemonMainSearchBar.endEditing(true)
+    }
+}
+
+
 extension PokemonViewController: PokemonProtokol {
     
-    func selectCell(_id: Double, name: String, imgage: String) {
-
+    func selectCell(_id: Int, name: String, imgage: String) {
+        
     }
 }

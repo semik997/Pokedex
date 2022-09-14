@@ -15,7 +15,7 @@ class Pokemon {
     // MARK: - Data request structure via API
     
     struct PokemonModel: Codable {
-        let id: Double
+        let id: Int
         let name: String
         let sprites: Sprites
         let types: [Types]?

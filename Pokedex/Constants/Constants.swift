@@ -10,4 +10,4 @@ import UIKit
 
 // MARK: - API link
 
-let linkAPI = "https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon"
+let listOfPokemonLinkAPI = "https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon"
