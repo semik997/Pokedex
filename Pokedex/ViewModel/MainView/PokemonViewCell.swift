@@ -27,31 +27,10 @@ class PokemonViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        
-//        // add shadow on cell
-//        backgroundColor = .clear // very important
-//        layer.masksToBounds = false
-//        layer.shadowOpacity = 0.23
-//        layer.shadowRadius = 10
-//        layer.shadowOffset = CGSize(width: 0, height: 0)
-//        layer.shadowColor = UIColor.black.cgColor
-//
-//        // add corner radius on `contentView`
-//        contentView.backgroundColor = .white
-//        contentView.layer.cornerRadius = 10
-//        
+
         
     }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        // this will turn on `masksToBounds` just before showing the cell
-//        cell.contentView.layer.masksToBounds = true
-//        // if you do not set `shadowPath` you'll notice laggy scrolling
-//        // add this in `willDisplay` method
-//        let radius = cell.contentView.layer.cornerRadius
-//        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-//    }
-    
+
 }
 
 extension PokemonViewCell {
