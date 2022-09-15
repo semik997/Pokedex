@@ -114,7 +114,7 @@
 		2F5A879128D0E9400072A6D0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				2FD400CB28D32A02008E1081 /* MaimView */,
+				2FD400CB28D32A02008E1081 /* MainView */,
 				2FD400CA28D329FA008E1081 /* TeamView */,
 				2FD400C928D329DD008E1081 /* FavoriteView */,
 			);
@@ -189,13 +189,13 @@
 			path = TeamView;
 			sourceTree = "<group>";
 		};
-		2FD400CB28D32A02008E1081 /* MaimView */ = {
+		2FD400CB28D32A02008E1081 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
 				2F5A877D28D0E49C0072A6D0 /* PokemonViewController.swift */,
 				2F5A879C28D0F08C0072A6D0 /* PokemonViewCell.swift */,
 			);
-			path = MaimView;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		4C9CFF3987ACAFC9DE6A3D2C /* Frameworks */ = {
@@ -212,7 +212,6 @@
 				4E4DDC9C0948B45D995FBBD1 /* Pods-Pokedex.debug.xcconfig */,
 				DF6606CA308DD39DCD694730 /* Pods-Pokedex.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

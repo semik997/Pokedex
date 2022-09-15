@@ -7,21 +7,21 @@
 
 import UIKit
 
-class PokemonViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PokemonViewController: UICollectionViewController {
     
     private var apiManager = ListOfPokemonAPIManager()
     var pokemons: [Pokemon.PokemonModel] = [] {
         didSet {
             DispatchQueue.main.async { [self] in
                 filtredPokemon = pokemons
-                tableView.reloadData()
+                collectionViewSpace.reloadData()
             }
         }
     }
     var filtredPokemon: [Pokemon.PokemonModel] = []
     private var seguesConstant = SeguesConst()
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionViewSpace: UICollectionView!
     @IBOutlet weak var titleMainLabel: UILabel!
     @IBOutlet weak var pokemonMainSearchBar: UISearchBar!
     @IBOutlet weak var teamPokemonOptionsButton: UIButton!
@@ -56,34 +56,29 @@ class PokemonViewController: UIViewController, UITableViewDataSource, UITableVie
         buttonOptions()
         apiManager.fetchCurrent(onCompletion: { [weak self]
             currentPokemonData in self?.pokemons = currentPokemonData })
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         pokemonMainSearchBar.delegate = self
+        collectionViewSpace?.delegate = self
+        collectionViewSpace?.dataSource = self
         
     }
 
     
     // MARK: - Displaying data in a cell
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filtredPokemon.count
     }
     
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell",
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionViewSpace.dequeueReusableCell(withReuseIdentifier: "MainCell",
                                                        for: indexPath) as? PokemonViewCell
-        else { return UITableViewCell()}
+        else { return UICollectionViewCell()}
         cell.delegate = self
-        if filtredPokemon.count != 0 {
-            
             cell.loadData(pokemon: filtredPokemon[indexPath.row])
-        } else {
-            cell.pokemonNameLabel.text = "Not found"
-        }
+    
         return cell
     }
-    
+
     func buttonOptions() {
         
         teamPokemonOptionsButton.backgroundColor = .systemIndigo
@@ -103,7 +98,7 @@ extension PokemonViewController: UISearchBarDelegate {
         filtredPokemon = searchText.isEmpty ? pokemons : pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
             return item.name.range(of: searchText, options: .caseInsensitive) != nil
         }
-        tableView.reloadData()
+        collectionViewSpace.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
