@@ -7,23 +7,11 @@
 
 import UIKit
 
+
+
 class PokemonViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionViewSpace: UICollectionView!
-    
-    private var apiManager = ListOfPokemonAPIManager()
-    var pokemons: [Pokemon.PokemonModel] = [] {
-        didSet {
-            DispatchQueue.main.async { [self] in
-                filtredPokemon = pokemons
-                collectionViewSpace.reloadData()
-            }
-        }
-    }
-    var filtredPokemon: [Pokemon.PokemonModel] = []
-    private var seguesConstant = SeguesConst()
-    
-    
     @IBOutlet weak var titleMainLabel: UILabel!
     @IBOutlet weak var pokemonMainSearchBar: UISearchBar!
     @IBOutlet weak var teamPokemonOptionsButton: UIButton!
@@ -31,63 +19,99 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var countTeamPokemonLabel: UILabel!
     @IBOutlet weak var countFavoritePokemoneLabel: UILabel!
     
-    
-    // MARK: - Sorted view
-    @IBAction func sortedMainButton(_ sender: UIButton) {
-        
-    }
-    
-    
-    // MARK: - Team view
-    @IBAction func teamPokemonButton(_ sender: UIButton) {
-        
-
-    }
-    
-    // MARK: - Favorite view
-    @IBAction func favoritePokemonButton(_ sender: Any) {
-        
-
+    private var apiManager = ListOfPokemonAPIManager()
+    private var seguesConstant = SeguesConst()
+    var filtredPokemons: [Pokemon.PokemonModel] = []
+    var favoritePokemons: [Pokemon.PokemonModel] = []
+    var teamPokemons: [Pokemon.PokemonModel] = []
+    var pokemons: [Pokemon.PokemonModel] = [] {
+        didSet {
+            DispatchQueue.main.async { [self] in
+                filtredPokemons = pokemons
+                favoritePokemons = pokemons[randomPick: 6]
+                teamPokemons = pokemons[randomPick: 6]
+                collectionViewSpace.reloadData()
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonOptions()
-        apiManager.fetchCurrent(onCompletion: { [weak self]
-            currentPokemonData in self?.pokemons = currentPokemonData })
-        pokemonMainSearchBar.delegate = self
+        searchOptions()
         collectionViewSpace.delegate = self
         collectionViewSpace.dataSource = self
-        pokemonMainSearchBar.barTintColor = .systemGray6
-        pokemonMainSearchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        
+        apiManager.fetchCurrent(onCompletion: { [weak self]
+            currentPokemonData in self?.pokemons = currentPokemonData })
     }
-
     
     // MARK: - Displaying data in a cell
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filtredPokemon.count
+        return filtredPokemons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionViewSpace.dequeueReusableCell(withReuseIdentifier: "MainCell",
-                                                       for: indexPath) as? PokemonViewCell
+                                                                 for: indexPath) as? PokemonViewCell
         else { return UICollectionViewCell()}
         cell.delegate = self
-            cell.loadData(pokemon: filtredPokemon[indexPath.row])
-    
+        cell.loadData(pokemon: filtredPokemons[indexPath.row])
         return cell
     }
-
-    func buttonOptions() {
+    
+    // MARK: - Favorite and Team View
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == seguesConstant.showTeam {
+            
+            let pokemonTeam = teamPokemons
+            let nav = segue.destination as? UINavigationController
+            let favAndTeamVC = nav?.topViewController as? FavAndTeamCollectionViewController
+            favAndTeamVC?.teamDetail = pokemonTeam
+            favAndTeamVC?.isFavorite = false
+            
+        } else if segue.identifier == seguesConstant.showFavorite {
+            
+            let favoritePokemon = favoritePokemons
+            let nav = segue.destination as? UINavigationController
+            let favAndTeamVC = nav?.topViewController as? FavAndTeamCollectionViewController
+            favAndTeamVC?.favoriteDetail = favoritePokemon
+            favAndTeamVC?.isFavorite = true
+        }
+    }
+    
+    //MARK: - Other options
+    
+    // Search settings
+    func searchOptions() {
+        pokemonMainSearchBar.delegate = self
+        pokemonMainSearchBar.barTintColor = .systemGray6
+        pokemonMainSearchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+    }
+    
+    // Button settings
+    func buttonOptions() {
         teamPokemonOptionsButton.backgroundColor = .systemIndigo
         teamPokemonOptionsButton.layer.cornerRadius = 10
-        
         favoritePokemonOptionsButton.backgroundColor = .systemMint
         favoritePokemonOptionsButton.layer.cornerRadius = 10
     }
+    
+    // MARK: - Sorted view
+    @IBAction func sortedMainButton(_ sender: UIButton) {
+    }
+    
+    // MARK: - Team view
+    @IBAction func teamPokemonButton(_ sender: UIButton) {
+    }
+    
+    // MARK: - Favorite view
+    @IBAction func favoritePokemonButton(_ sender: Any) {
+    }
+    
+    
 }
 
 // MARK: - Setting search bar
@@ -95,13 +119,13 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
 extension PokemonViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filtredPokemon = searchText.isEmpty ? pokemons : pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
+        filtredPokemons = searchText.isEmpty ? pokemons : pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
             return item.name.range(of: searchText, options: .caseInsensitive) != nil
         }
         collectionViewSpace.reloadData()
     }
     
+    // closed keyboard
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         self.pokemonMainSearchBar.endEditing(true)
     }
@@ -109,8 +133,6 @@ extension PokemonViewController: UISearchBarDelegate {
 
 
 extension PokemonViewController: PokemonProtokol {
-    
     func selectCell(_id: Int, name: String, imgage: String) {
-        
     }
 }
