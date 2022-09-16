@@ -26,7 +26,6 @@ class Pokemon {
     }
     
     struct Types: Codable {
-        let slot: Int?
         let type: `Type`?
     }
 

@@ -90,7 +90,7 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     // Button settings
-    func buttonOptions() {        
+    func buttonOptions() {
         favoritePokemonOptionsButton.applyGradient(
             colours: [UIColor(red: 0.395, green: 0.796, blue: 0.603, alpha: 1),
                       UIColor(red: 0.083, green: 0.816, blue: 0.863, alpha: 1)],
