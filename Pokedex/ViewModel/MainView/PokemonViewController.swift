@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class PokemonViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionViewSpace: UICollectionView!
@@ -92,11 +90,22 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     // Button settings
-    func buttonOptions() {
-        teamPokemonOptionsButton.backgroundColor = .systemIndigo
-        teamPokemonOptionsButton.layer.cornerRadius = 10
-        favoritePokemonOptionsButton.backgroundColor = .systemMint
+    func buttonOptions() {        
+        favoritePokemonOptionsButton.applyGradient(
+            colours: [UIColor(red: 0.395, green: 0.796, blue: 0.603, alpha: 1),
+                      UIColor(red: 0.083, green: 0.816, blue: 0.863, alpha: 1)],
+            cornerRadius: 10,
+            startPoint: CGPoint(x: 0, y: 0.5),
+            endPoint: CGPoint(x: 1, y: 0.5))
         favoritePokemonOptionsButton.layer.cornerRadius = 10
+        
+        teamPokemonOptionsButton.applyGradient(
+            colours: [UIColor(red: 0.275, green: 0.275, blue: 0.612, alpha: 1),
+                      UIColor(red: 0.496, green: 0.194, blue: 0.879, alpha: 1)],
+            cornerRadius: 10,
+            startPoint: CGPoint(x: 0, y: 0.5),
+            endPoint: CGPoint(x: 1, y: 0.5))
+        teamPokemonOptionsButton.layer.cornerRadius = 10
     }
     
     // MARK: - Sorted view

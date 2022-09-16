@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F01D9DE28D36C5D0065A332 /* ArrayExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F01D9DD28D36C5D0065A332 /* ArrayExtentions.swift */; };
+		2F01D9DE28D36C5D0065A332 /* ExtentionsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F01D9DD28D36C5D0065A332 /* ExtentionsArray.swift */; };
 		2F1C13F28A6D328D84341F46 /* Pods_Pokedex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549653484133D3B7434CA750 /* Pods_Pokedex.framework */; };
 		2F5A877A28D0E49C0072A6D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A877928D0E49C0072A6D0 /* AppDelegate.swift */; };
 		2F5A877C28D0E49C0072A6D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A877B28D0E49C0072A6D0 /* SceneDelegate.swift */; };
@@ -22,12 +22,13 @@
 		2F5A879F28D1CE800072A6D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A879E28D1CE800072A6D0 /* Constants.swift */; };
 		2F73D5E628D4C48E0026B5F5 /* FavAndTeamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D5E528D4C48E0026B5F5 /* FavAndTeamCollectionViewController.swift */; };
 		2F73D5E828D4C4A70026B5F5 /* FavAndTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D5E728D4C4A70026B5F5 /* FavAndTeamCollectionViewCell.swift */; };
+		2F73D5F128D5149B0026B5F5 /* ExtentionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D5F028D5149B0026B5F5 /* ExtentionUIView.swift */; };
 		2FD400D528D33311008E1081 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FD400D428D33311008E1081 /* SF-Pro.ttf */; };
 		2FF9A70D28D370E1007B9F53 /* ExtentionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF9A70C28D370E1007B9F53 /* ExtentionUIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F01D9DD28D36C5D0065A332 /* ArrayExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtentions.swift; sourceTree = "<group>"; };
+		2F01D9DD28D36C5D0065A332 /* ExtentionsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionsArray.swift; sourceTree = "<group>"; };
 		2F5A877628D0E49C0072A6D0 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F5A877928D0E49C0072A6D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F5A877B28D0E49C0072A6D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		2F5A879E28D1CE800072A6D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2F73D5E528D4C48E0026B5F5 /* FavAndTeamCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavAndTeamCollectionViewController.swift; sourceTree = "<group>"; };
 		2F73D5E728D4C4A70026B5F5 /* FavAndTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavAndTeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F73D5F028D5149B0026B5F5 /* ExtentionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionUIView.swift; sourceTree = "<group>"; };
 		2FD400D428D33311008E1081 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		2FF9A70C28D370E1007B9F53 /* ExtentionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionUIImage.swift; sourceTree = "<group>"; };
 		4E4DDC9C0948B45D995FBBD1 /* Pods-Pokedex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokedex.debug.xcconfig"; path = "Target Support Files/Pods-Pokedex/Pods-Pokedex.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,8 +130,9 @@
 		2F5A879328D0E9580072A6D0 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
-				2F01D9DD28D36C5D0065A332 /* ArrayExtentions.swift */,
+				2F01D9DD28D36C5D0065A332 /* ExtentionsArray.swift */,
 				2FF9A70C28D370E1007B9F53 /* ExtentionUIImage.swift */,
+				2F73D5F028D5149B0026B5F5 /* ExtentionUIView.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -321,9 +324,10 @@
 				2F5A878428D0E49C0072A6D0 /* Pokedex.xcdatamodeld in Sources */,
 				2F5A877E28D0E49C0072A6D0 /* PokemonViewController.swift in Sources */,
 				2FF9A70D28D370E1007B9F53 /* ExtentionUIImage.swift in Sources */,
-				2F01D9DE28D36C5D0065A332 /* ArrayExtentions.swift in Sources */,
+				2F01D9DE28D36C5D0065A332 /* ExtentionsArray.swift in Sources */,
 				2F73D5E828D4C4A70026B5F5 /* FavAndTeamCollectionViewCell.swift in Sources */,
 				2F73D5E628D4C48E0026B5F5 /* FavAndTeamCollectionViewController.swift in Sources */,
+				2F73D5F128D5149B0026B5F5 /* ExtentionUIView.swift in Sources */,
 				2F5A879D28D0F08C0072A6D0 /* PokemonViewCell.swift in Sources */,
 				2F5A877A28D0E49C0072A6D0 /* AppDelegate.swift in Sources */,
 				2F5A879B28D0F0000072A6D0 /* ListOfPokemonAPIManager.swift in Sources */,
@@ -482,6 +486,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +516,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

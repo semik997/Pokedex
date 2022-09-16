@@ -9,15 +9,15 @@ import UIKit
 
 class FavAndTeamCollectionViewController: UICollectionViewController {
     
+    @IBOutlet var collectionViewSpace: UICollectionView!
     var isFavorite: Bool?
     var teamDetail: [Pokemon.PokemonModel] = []
     var favoriteDetail: [Pokemon.PokemonModel] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        defineColor()
     }
-    
     
     // MARK: - UICollectionViewDataSource
     
@@ -76,6 +76,43 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
             }
             return cell
         }
+    }
+    
+    //MARK: - Other options
+    
+    func defineColor() {
+        if isFavorite == true {
+            setFavoriteColor()
+        } else {
+            setTeamColor()
+        }
+    }
+    
+    func setFavoriteColor() {
+        
+        let bgView = UIView(frame: collectionViewSpace.bounds)
+        let color1 = UIColor(red: 0.395, green: 0.796, blue: 0.603, alpha: 1).cgColor
+        let color2 = UIColor(red: 0.083, green: 0.816, blue: 0.863, alpha: 1).cgColor
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.collectionViewSpace.frame
+        gradientLayer.colors = [color1, color2]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        bgView.layer.insertSublayer(gradientLayer, at: 0)
+        self.collectionViewSpace.backgroundView = bgView
+    }
+    
+    func setTeamColor() {
+        let bgView = UIView(frame: collectionViewSpace.bounds)
+        let color1 = UIColor(red: 0.275, green: 0.275, blue: 0.612, alpha: 1).cgColor
+        let color2 = UIColor(red: 0.496, green: 0.194, blue: 0.879, alpha: 1).cgColor
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.collectionViewSpace.frame
+        gradientLayer.colors = [color1, color2]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        bgView.layer.insertSublayer(gradientLayer, at: 0)
+        self.collectionViewSpace.backgroundView = bgView
     }
     
     @IBAction func exitButton(_ sender: UIBarButtonItem) {
