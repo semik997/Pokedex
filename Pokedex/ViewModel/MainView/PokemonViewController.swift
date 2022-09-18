@@ -51,14 +51,14 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionViewSpace.dequeueReusableCell(withReuseIdentifier: "MainCell",
-                                                                 for: indexPath) as? PokemonViewCell
+                                                                 for: indexPath)as? PokemonViewCell
         else { return UICollectionViewCell()}
         cell.delegate = self
         cell.loadData(pokemon: filtredPokemons[indexPath.row])
         return cell
     }
     
-    // MARK: - Favorite and Team View
+    // MARK: - Segue to Favorite and Team View
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -78,7 +78,22 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
             favAndTeamVC?.favoriteDetail = favoritePokemon
             favAndTeamVC?.isFavorite = true
         }
+    
+    //MARK: - Segue to Detail View
+    
+        if segue.identifier == seguesConstant.showDetail {
+            if let cell = sender as? PokemonViewCell,
+               let indexPath = collectionViewSpace.indexPath(for: cell) {
+                
+                let pokemonDetail = filtredPokemons[indexPath.row]
+                let nav = segue.destination as? UINavigationController
+                let detailVC = nav?.topViewController as? DetailViewController
+                detailVC?.detail = pokemonDetail
+                
+            }
+        }
     }
+
     
     //MARK: - Other options
     

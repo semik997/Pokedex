@@ -16,7 +16,7 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var firstAbilityFavAndTeamPokemonLabel: UILabel!
     @IBOutlet weak var secondAbilityFavAndTeamPokemonLabel: UILabel!
     
-    private var currentPokemon: Pokemon.PokemonModel?
+//    private var currentPokemon: Pokemon.PokemonModel?
     weak var delegate: PokemonProtokol?
     
     override func awakeFromNib() {
@@ -42,7 +42,7 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
     func loadData(pokemon: Pokemon.PokemonModel) {
         var checkSecondAbility = false
         let imageURL = URL(string: pokemon.sprites.front_default)
-        currentPokemon = pokemon
+//        currentPokemon = pokemon
         nameFavAndTeamPokemonLabel.text = pokemon.name
         numberFavAndTeamPokemonLabel.text = "Nr. \(pokemon.id)"
         favAndTeamPokemonImage.sd_setImage(with: imageURL)
@@ -53,25 +53,6 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
         }
         if checkSecondAbility == false {
             secondAbilityFavAndTeamPokemonLabel.isHidden = true
-        }
-    }
-}
-
-
-//MARK: - Setting title Favorime and Team View
-
-class FavAndTeamTitleCollectionViewCell: UICollectionViewCell {
-    
-    let identifier = "TeamAndFavTitleCell"
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    func titleName(isFavorite: Bool) {
-        if isFavorite == true {
-            
-            titleLabel.text = "Favorite"
-        } else {
-            
-            titleLabel.text = "My Team"
         }
     }
 }

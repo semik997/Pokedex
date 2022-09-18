@@ -11,9 +11,11 @@ import UIKit
 // MARK: - API link
 
 let listOfPokemonLinkAPI = "https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon"
+let detailPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon/"
 
 // MARK: - Constants from Segue
 struct SeguesConst {
     let showTeam = "showTeam"
     let showFavorite = "showFavorite"
+    let showDetail = "showDetail"
 }
