@@ -10,7 +10,9 @@ import UIKit
 class DetailViewController: UIViewController, UICollectionViewDelegate {
     
     // View Space Outlets
+    @IBOutlet var basicViewControllerSpace: UIView!
     @IBOutlet var viewControllerSpace: UIView!
+    @IBOutlet weak var navigationBerItem: UINavigationItem!
     @IBOutlet weak var detailInfoViewSpace: UIView!
     @IBOutlet weak var detailStaticticsViewSpace: UIView!
     @IBOutlet weak var detailGrowthViewSpace: UIView!
@@ -52,98 +54,129 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var totalStatisticsProgress: UIProgressView!
     
     
-    // Detail Growth Outlets
-    @IBOutlet weak var lvl1GrowthLabel: UILabel!
-    @IBOutlet weak var lvl2GrowthLabel: UILabel!
-    @IBOutlet weak var lvl3GrowthLabel: UILabel!
-    @IBOutlet weak var lvl6GrowthLabel: UILabel!
-    
-    @IBOutlet weak var valueLvl1GrowthLabel: UILabel!
-    @IBOutlet weak var valueLvl2GrowthLabel: UILabel!
-    @IBOutlet weak var valueLvl3GrowthLabel: UILabel!
-    @IBOutlet weak var valueLvl6GrowthLabel: UILabel!
-    
-    
-
-    
-    
     let apiManager = DetailPokemonAPIManager()
-    var detail: Pokemon.PokemonModel?
+    let detailAPIManager = DescriptionPokemonAPIManager()
     var extentionsColor = ExtentionsColor()
-    var countItems = [1,2,3]
-    var pokemonDetail: DetailPokemon.DetailPokemonModel?
-    
+    var detail: Pokemon.PokemonModel?
+    var pokemonInfo: DescriptionPokemon.DescriptionPokemonModel? {
+        didSet {
+            DispatchQueue.main.async { [self] in
+                setupAboutField()
+                
+            }
+        }
+    }
+    var pokemonDetail: DetailPokemon.DetailPokemonModel? {
+        didSet {
+            DispatchQueue.main.async { [self] in
+                setDetail()
+                
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTypeLabelOptions()
         setBackgroundColor()
         apiManager.fetchDetail(onCompletion: ({[weak self]
-            currentPokemonData in self?.pokemonDetail = currentPokemonData}), forIdNumber: detail?.id ?? 1)
+            currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: detail?.id ?? 1)
+        
+        detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
+            descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: detail?.id ?? 1)
+    }
+    
+    
+    
+    //MARK: - Setting Basic View
+    func setBackgroundColor() {
+        viewControllerSpace.backgroundColor = extentionsColor.typeColor(name: detail?.types?[0].type?.name ?? "grass")
+        basicViewControllerSpace.backgroundColor = extentionsColor.typeColor(name: detail?.types?[0].type?.name ?? "grass")
+//        navigationBerItem.standardAppearance = extentionsColor.typeColor(name: detail?.types?[0].type?.name ?? "grass")
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithDefaultBackground()
+//        navigationBerItem.standardAppearance = appearance
+    }
+    
+    
+    //MARK: - Setting About View
+    
+    // Setting type label
+    func setupTypeLabelOptions() {
+        firstTypeAboutLabel.layer.masksToBounds = true
+        firstTypeAboutLabel.layer.cornerRadius = 8
+        firstTypeAboutLabel.text = detail?.types?[0].type?.name
+        let firstAbilityName = detail?.types?[0].type?.name
+        firstTypeAboutLabel.backgroundColor = extentionsColor.typeColor(name: firstAbilityName ?? "grass")
+        secondTypeAboutLabel.layer.masksToBounds = true
+        secondTypeAboutLabel.layer.cornerRadius = 8
+        // Сheck for the presence of the 2nd ability
+        for i in 1 ..< (detail?.types?.count ?? 1) {
+            if secondTypeAboutLabel != nil {
+                secondTypeAboutLabel.text = detail?.types?[i].type?.name
+                let secondAbilityName = detail?.types?[i].type?.name
+                secondTypeAboutLabel.backgroundColor = extentionsColor.typeColor(name: secondAbilityName ?? "grass")
+            }
+        }
+    }
+    
+    func setupAboutField() {
+        let text = pokemonInfo?.info[1].descriptionText
+        descriptionAboutLabel.text = text?.replacingOccurrences(of: "\n", with: " ")
+        valueNumberAboutLabel.text = "\(detail?.id ?? 1)"
+        valueHeightAboutLabel.text = "\(pokemonDetail?.height ?? 1)"
+        valueWeightAboutLabel.text = "\(pokemonDetail?.weight ?? 1)"
+        valueSkillsAboutLabel.text = "\(pokemonDetail?.moves[0].move.name ?? "-")"
+        
         
     }
     
-    func setBackgroundColor() {
-        viewControllerSpace.backgroundColor = extentionsColor.typeColor(name: detail?.types?[0].type?.name ?? "grass")
-//        collectionViewSpace.backgroundColor = extentionsColor.typeColor(name: detail?.types?[0].type?.name ?? "grass")
-    }
     
+    //MARK: - Setting Statistics View
     func setDetail() {
-        let imageURL = URL(string: pokemonDetail?.sprites?.other?.dream_world?.front_default ?? "Not Found")
+        let imageURL = URL(string: pokemonDetail?.sprites?.other?.image?.front_default ?? "-")
         pokemonImage.sd_setImage(with: imageURL)
         pokemonNameLabel.text = detail?.name
+        valueHpStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[0].base_stat ?? 1))"
+        hpStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[0].base_stat ?? 60)
+        hpStatisticsProgress.setProgress(((pokemonDetail?.stats?[0].base_stat)! / 100), animated: false)
+        
+        valueAttackStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[1].base_stat ?? 1))"
+        attackStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[1].base_stat ?? 60)
+        attackStatisticsProgress.setProgress(((pokemonDetail?.stats?[1].base_stat)! / 100), animated: false)
+        
+        valueDefenceStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[2].base_stat ?? 1))"
+        defenceStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[2].base_stat ?? 60)
+        defenceStatisticsProgress.setProgress(((pokemonDetail?.stats?[2].base_stat)! / 100), animated: false)
+        
+        valueSpAttackStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[3].base_stat ?? 1))"
+        spAttakStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[3].base_stat ?? 60)
+        spAttakStatisticsProgress.setProgress(((pokemonDetail?.stats?[3].base_stat)! / 100), animated: false)
+        
+        valueSpDefStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[4].base_stat ?? 1))"
+        spDefStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[4].base_stat ?? 60)
+        spDefStatisticsProgress.setProgress(((pokemonDetail?.stats?[4].base_stat)! / 100), animated: false)
+        
+        valueSpeedStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[5].base_stat ?? 1))"
+        speedStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[5].base_stat ?? 60)
+        speedStatisticsProgress.setProgress(((pokemonDetail?.stats?[5].base_stat)! / 100), animated: false)
+        
+        valueTotalStatisticsLabel.text = "\(Int(pokemonDetail?.base_experience ?? 1))"
+        totalStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.base_experience ?? 60)
+        totalStatisticsProgress.setProgress(((pokemonDetail?.base_experience)! / 100), animated: false)
     }
     
+    func progressBar(point: Float) -> UIColor {
+        var color: UIColor
+        if point >= 50 {
+            color = .green
+        } else {
+            color = .red
+        }
+        return color
+    }
     
-//    func loadData(pokemon: Pokemon.PokemonModel) {
-//        valueNumberAboutLabel.text = "Nr. \(pokemon.id)"
-//    }
-//    func loadDataDetail(pokemon: DetailPokemon.DetailPokemonModel) {
-//        valueHeightAboutLabel.text = "\(pokemon.height)"
-//        valueWeightAboutLabel.text = "\(pokemon.weight)"
-//    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // MARK: UICollectionViewDataSource
-    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return countItems.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//            guard let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutCell",
-//                                                                   for: indexPath) as? DetailAboutViewController
-//            else { return UICollectionViewCell() }
-//            detailCell.delegate = self
-//            detailCell.loadData(pokemon: detail!)
-//            detailCell.loadDataDetail(pokemon: pokemonDetail!)
-//            setDetail()
-//            cell = detailCell
-//
-//        return cell
-//    }
+    //MARK: - Other options
     
     @IBAction func exitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

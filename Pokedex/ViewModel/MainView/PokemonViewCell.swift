@@ -24,8 +24,6 @@ class PokemonViewCell: UICollectionViewCell {
     weak var delegate: PokemonProtokol?
     var extentionsColor = ExtentionsColor()
     var color = ExtentionsColor.TypesPokemon.bug
-    var firstAbilityName: String?
-    var secondAbilityName: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,14 +59,14 @@ class PokemonViewCell: UICollectionViewCell {
         pokemonNameLabel.text = pokemon.name
         pokemonIdLabel.text = "Nr. \(pokemon.id)"
         pokemonImage.sd_setImage(with: imageURL)
-        firstAbilityName = pokemon.types?[0].type?.name
+        let firstAbilityName = pokemon.types?[0].type?.name
         pokemonFirstAbilityLabel.backgroundColor = extentionsColor.typeColor(name: firstAbilityName ?? "grass")
         pokemonFirstAbilityLabel.text = pokemon.types?[0].type?.name
         // Сheck for the presence of the 2nd ability
         for i in 1 ..< (pokemon.types?.count ?? 1) {
             if pokemonSecondAbilityLabel != nil {
                 pokemonSecondAbilityLabel.text = pokemon.types?[i].type?.name
-                secondAbilityName = pokemon.types?[i].type?.name
+                let secondAbilityName = pokemon.types?[i].type?.name
                 pokemonSecondAbilityLabel.backgroundColor = extentionsColor.typeColor(name: secondAbilityName ?? "grass")
             }
         }

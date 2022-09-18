@@ -12,6 +12,7 @@ import UIKit
 
 let listOfPokemonLinkAPI = "https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon"
 let detailPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon/"
+let descriptionPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon-species/"
 
 // MARK: - Constants from Segue
 struct SeguesConst {

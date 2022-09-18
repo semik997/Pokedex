@@ -12,7 +12,7 @@ class Pokemon {
     
     static let shared = Pokemon()
     
-    // MARK: - Data request structure via API
+    // MARK: - Data request structure via API from https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon
     
     struct PokemonModel: Codable {
         let id: Int

@@ -33,7 +33,6 @@ struct ListOfPokemonAPIManager {
         var currentPokemon: [Pokemon.PokemonModel] = []
         do {
             let currentPokemonData = try decoder.decode([Pokemon.PokemonModel].self, from: data)
-            
             for index in currentPokemonData {
                 currentPokemon.append(index)
             }
