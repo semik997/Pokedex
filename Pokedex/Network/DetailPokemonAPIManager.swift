@@ -13,7 +13,7 @@ struct DetailPokemonAPIManager {
     
     // MARK: - Api request
     func fetchDetail(onCompletion: ((DetailPokemon.DetailPokemonModel) -> Void )?, forIdNumber IdNumber: Int) {
-        let urlString = "\(detailPokemonLinkAPI)\(IdNumber)"
+        let urlString = "\(Constants.detailPokemonLinkAPI)\(IdNumber)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
@@ -33,7 +33,7 @@ struct DetailPokemonAPIManager {
         var detailPokemon: DetailPokemon.DetailPokemonModel
         do {
             let detailPokemonData = try decoder.decode(DetailPokemon.DetailPokemonModel.self, from: data)
-                detailPokemon = detailPokemonData
+            detailPokemon = detailPokemonData
             return detailPokemon
         } catch let error as NSError {
             print(error)

@@ -10,45 +10,33 @@ import UIKit
 class FavAndTeamCollectionViewController: UICollectionViewController {
     
     @IBOutlet var collectionViewSpace: UICollectionView!
-    var isFavorite: Bool?
-    private var seguesConstant = SeguesConst()
-    var teamDetail: [Pokemon.PokemonModel] = []
-    var favoriteDetail: [Pokemon.PokemonModel] = []
-    var favoritePokemons: [PokemonsSave] = [] {
-        didSet {
-            DispatchQueue.main.async { [self] in
-                collectionViewSpace.reloadData()
-                
-            }
-        }
-    }
     
+    var viewModel = FavAndTeamCollectionViewModel()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        favoritePokemons = CoreDataStack.coreDataShared.fetchPokemons()
+        viewModel.uploadPokemons()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         defineColor()
-//        favoritePokemons = CoreDataStack.coreDataShared.fetchPokemons()
     }
+    
     
     // MARK: - UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isFavorite == true {
-            return favoritePokemons.count
+        if viewModel.isFavorite == true {
+            return viewModel.favoritePokemons.count
         } else {
-            return teamDetail.count
+            return viewModel.teamDetail.count
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if isFavorite == true {
+        if viewModel.isFavorite == true {
             
             // MARK: Load Favorite View
             var cell: UICollectionViewCell
@@ -65,8 +53,7 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
                 guard let favCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamAndFavCell",
                                                                        for: indexPath) as? FavAndTeamCollectionViewCell
                 else { return UICollectionViewCell() }
-//                favCell.favoriteDelegate = self
-                favCell.loadData(pokemon: favoritePokemons[indexPath.row])
+                favCell.loadConfigure(pokemon: viewModel.favoritePokemons[indexPath.row])
                 cell = favCell
             }
             return cell
@@ -87,18 +74,17 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
                 guard let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamAndFavCell",
                                                                         for: indexPath) as? FavAndTeamCollectionViewCell
                 else { return UICollectionViewCell() }
-                teamCell.delegate = self
-                teamCell.loadTeamData(pokemon: teamDetail[indexPath.row])
+                teamCell.loadConfigure(pokemon: viewModel.teamDetail[indexPath.row])
                 cell = teamCell
             }
             return cell
         }
     }
     
-    //MARK: - Other options
+    //MARK: - Set Background Color
     
     func defineColor() {
-        if isFavorite == true {
+        if viewModel.isFavorite == true {
             setFavoriteColor()
         } else {
             setTeamColor()
@@ -132,33 +118,29 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
         self.collectionViewSpace.backgroundView = bgView
     }
     
-    @IBAction func exitButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-   
+    
+    
     // MARK: - Segue to Deatil View
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == seguesConstant.showDetail {
+        if segue.identifier == Constants.SeguesConst.showDetail {
             if let cell = sender as? FavAndTeamCollectionViewCell,
                let indexPath = collectionViewSpace.indexPath(for: cell) {
                 
-                let pokemonDetail = favoritePokemons[indexPath.row]
+                let pokemonDetail = viewModel.favoritePokemons[indexPath.row]
                 let nav = segue.destination as? UINavigationController
                 let detailVC = nav?.topViewController as? DetailViewController
-                detailVC?.favoriteDetail = pokemonDetail
+                detailVC?.viewModel.favoriteDetail = pokemonDetail
                 detailVC?.likeButton.image = UIImage(systemName: "heart.fill")
-                detailVC?.isFavorite = true
+                detailVC?.viewModel.isFavorite = true
                 
             }
         }
     }
     
-    
+    @IBAction func exitButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 
-extension FavAndTeamCollectionViewController: PokemonProtokol {
-    func selectCell(_id: Int, name: String, imgage: String) {
-    }
-}

@@ -20,18 +20,23 @@ class PokemonViewCell: UICollectionViewCell {
     @IBOutlet weak var pokemonFirstAbilityLabel: UILabel!
     @IBOutlet weak var pokemonSecondAbilityLabel: UILabel!
     
-//    private var currentPokemon: Pokemon.PokemonModel?
     weak var delegate: PokemonProtokol?
     var extentionsColor = ExtentionsColor()
     var color = ExtentionsColor.TypesPokemon.bug
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellOptions()
-        labelOptions()
+        cellConfigure()
     }
     
-    func cellOptions() {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pokemonFirstAbilityLabel.text = nil
+        pokemonSecondAbilityLabel.text = nil
+        pokemonSecondAbilityLabel.backgroundColor = .white
+    }
+    
+    func cellConfigure() {
         // options shadow
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 15)
@@ -43,9 +48,7 @@ class PokemonViewCell: UICollectionViewCell {
         // options cell
         contentView.layer.masksToBounds = true
         layer.cornerRadius = 10
-    }
-    
-    func labelOptions() {
+        // labelConfigure
         pokemonFirstAbilityLabel.layer.masksToBounds = true
         pokemonFirstAbilityLabel.layer.cornerRadius = 10
         pokemonSecondAbilityLabel.layer.masksToBounds = true
@@ -53,11 +56,10 @@ class PokemonViewCell: UICollectionViewCell {
     }
     
     // Load data in cell
-    func loadData(pokemon: Pokemon.PokemonModel) {
+    func loadConfigure(pokemon: Pokemon.PokemonModel) {
         let imageURL = URL(string: pokemon.sprites.front_default)
-//        currentPokemon = pokemon
         pokemonNameLabel.text = pokemon.name
-        pokemonIdLabel.text = "Nr. \(pokemon.id)"
+        pokemonIdLabel.text = "No. \(pokemon.id)"
         pokemonImage.sd_setImage(with: imageURL)
         let firstAbilityName = pokemon.types?[0].type?.name
         pokemonFirstAbilityLabel.backgroundColor = extentionsColor.typeColor(name: firstAbilityName ?? "grass")

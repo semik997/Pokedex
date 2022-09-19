@@ -52,12 +52,9 @@ class ExtentionsColor {
         }
         return .black
     }
-    
-
 }
 
 extension ExtentionsColor {
-    
     enum TypesPokemon {
         case grass
         case poison

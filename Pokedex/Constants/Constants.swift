@@ -8,15 +8,17 @@
 import Foundation
 import UIKit
 
-// MARK: - API link
-
-let listOfPokemonLinkAPI = "https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon"
-let detailPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon/"
-let descriptionPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon-species/"
-
-// MARK: - Constants from Segue
-struct SeguesConst {
-    let showTeam = "showTeam"
-    let showFavorite = "showFavorite"
-    let showDetail = "showDetail"
+class Constants {
+    // MARK: - API link
+    
+    static let listOfPokemonLinkAPI = "https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon"
+    static let detailPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon/"
+    static let descriptionPokemonLinkAPI = "https://pokeapi.co/api/v2/pokemon-species/"
+    
+    // MARK: - Constants from Segue
+    struct SeguesConst {
+        static let showTeam = "showTeam"
+        static let showFavorite = "showFavorite"
+        static let showDetail = "showDetail"
+    }
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class DetailPokemon {
     
-    static let sharedDetail = DetailPokemon()
-
     // MARK: - Data request structure via API from https://pokeapi.co/api/v2/pokemon/
     
     struct DetailPokemonModel: Codable {
@@ -35,7 +33,7 @@ class DetailPokemon {
     struct Sprites: Codable {
         let other: Other?
     }
-
+    
     struct Other: Codable {
         let image: Image?
         
@@ -43,14 +41,14 @@ class DetailPokemon {
             case image = "official-artwork"
         }
     }
-
+    
     struct Image: Codable {
         let front_default: String
     }
-
+    
     struct Stats: Codable {
         let base_stat: Float
-
+        
     }
     
     

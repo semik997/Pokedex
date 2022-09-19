@@ -11,7 +11,7 @@ import UIKit
 struct DescriptionPokemonAPIManager {
     
     func fetchDescription(onCompletion: ((DescriptionPokemon.DescriptionPokemonModel) -> Void )?, forIdNumber IdNumber: Int) {
-        let urlString = "\(descriptionPokemonLinkAPI)\(IdNumber)"
+        let urlString = "\(Constants.descriptionPokemonLinkAPI)\(IdNumber)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in

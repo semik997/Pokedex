@@ -10,8 +10,6 @@ import UIKit
 
 class DescriptionPokemon {
     
-    static let descriptionShared = DescriptionPokemon()
-    
     // MARK: - Data request structure via API from https://pokeapi.co/api/v2/pokemon-species/
     
     struct DescriptionPokemonModel: Codable {

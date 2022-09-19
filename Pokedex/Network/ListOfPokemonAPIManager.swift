@@ -12,8 +12,8 @@ import SystemConfiguration
 struct ListOfPokemonAPIManager {
     
     // MARK: - Api request
-    func fetchCurrent(onCompletion: (([Pokemon.PokemonModel]) -> Void)?) {
-        let urlString = "\(listOfPokemonLinkAPI)"
+    func fetchPokemons(onCompletion: (([Pokemon.PokemonModel]) -> Void)?) {
+        let urlString = "\(Constants.listOfPokemonLinkAPI)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in

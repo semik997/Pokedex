@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 import UIKit
 
-class CoreDataStack {
+class StoringLocalPokemon {
     
-    static let coreDataShared = CoreDataStack()
+    static let coreDataShared = StoringLocalPokemon()
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
@@ -42,17 +42,16 @@ class CoreDataStack {
     // MARK: - Core Data Saving support
     func saveContext () {
         let context = persistentContainer.viewContext
-          if context.hasChanges {
-              do {
-                  try context.save()
-              } catch {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
                 context.rollback()
-                  let nserror = error as NSError
-                  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-              }
-          }
-      }
-    
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
     
     // MARK: - Save a pokemon to Core Data
     func saveNewPokemon(pokemon: Pokemon.PokemonModel, number: String, status: Bool) {
@@ -76,7 +75,6 @@ class CoreDataStack {
         catch { fatalError("Unable to save data.") }
     }
     
-    
     // MARK: - Deleting a pokemon from Core Data
     func deleteFromData(name: String) {
         
@@ -93,6 +91,4 @@ class CoreDataStack {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
-    
 }
-

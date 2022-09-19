@@ -16,35 +16,50 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var favoritePokemonOptionsButton: UIButton!
     @IBOutlet weak var countTeamPokemonLabel: UILabel!
     @IBOutlet weak var countFavoritePokemoneLabel: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    private var apiManager = ListOfPokemonAPIManager()
-    private var seguesConstant = SeguesConst()
-    var filtredPokemons: [Pokemon.PokemonModel] = []
-    var teamPokemons: [Pokemon.PokemonModel] = []
-    var pokemons: [Pokemon.PokemonModel] = [] {
-        didSet {
-            DispatchQueue.main.async { [self] in
-                filtredPokemons = pokemons
-                teamPokemons = pokemons[randomPick: 6]
-                collectionViewSpace.reloadData()
-            }
-        }
+    var viewModel = PokemonViewModel()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        numberOfPokemons()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonOptions()
         searchOptions()
+        subscribeToEvents()
+        viewModel.fetchPokemons()
+    }
+    
+    private func configureCollectionView() {
         collectionViewSpace.delegate = self
         collectionViewSpace.dataSource = self
-        apiManager.fetchCurrent(onCompletion: { [weak self]
-            currentPokemonData in self?.pokemons = currentPokemonData })
     }
+    
+    private func subscribeToEvents() {
+        viewModel.onReloadCollection = {
+            // main async ??
+            self.collectionViewSpace.reloadData()
+        }
+        viewModel.onShowHud = {
+            // async ??
+            self.spinner.startAnimating()
+        }
+        viewModel.onDismissHud = {
+            DispatchQueue.main.async { [self] in
+                self.spinner.stopAnimating()
+            }
+            self.spinner.isHidden = true
+        }
+    }
+    
     
     // MARK: - Displaying data in a cell
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filtredPokemons.count
+        return viewModel.filtredPokemons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -52,7 +67,7 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
                                                                  for: indexPath)as? PokemonViewCell
         else { return UICollectionViewCell()}
         cell.delegate = self
-        cell.loadData(pokemon: filtredPokemons[indexPath.row])
+        cell.loadConfigure(pokemon: viewModel.filtredPokemons[indexPath.row])
         return cell
     }
     
@@ -60,36 +75,33 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == seguesConstant.showTeam {
-            
-            let pokemonTeam = teamPokemons
-            let nav = segue.destination as? UINavigationController
-            let favAndTeamVC = nav?.topViewController as? FavAndTeamCollectionViewController
-            favAndTeamVC?.teamDetail = pokemonTeam
-            favAndTeamVC?.isFavorite = false
-            
-        } else if segue.identifier == seguesConstant.showFavorite {
+        if segue.identifier == Constants.SeguesConst.showTeam {
             
             let nav = segue.destination as? UINavigationController
             let favAndTeamVC = nav?.topViewController as? FavAndTeamCollectionViewController
-            favAndTeamVC?.isFavorite = true
+            favAndTeamVC?.viewModel.isFavorite = false
+            
+        } else if segue.identifier == Constants.SeguesConst.showFavorite {
+            
+            let nav = segue.destination as? UINavigationController
+            let favAndTeamVC = nav?.topViewController as? FavAndTeamCollectionViewController
+            favAndTeamVC?.viewModel.isFavorite = true
         }
-    
-    //MARK: - Segue to Detail View
-    
-        if segue.identifier == seguesConstant.showDetail {
+        
+        //MARK: - Segue to Detail View
+        
+        if segue.identifier == Constants.SeguesConst.showDetail {
             if let cell = sender as? PokemonViewCell,
                let indexPath = collectionViewSpace.indexPath(for: cell) {
                 
-                let pokemonDetail = filtredPokemons[indexPath.row]
+                let pokemonDetail = viewModel.filtredPokemons[indexPath.row]
                 let nav = segue.destination as? UINavigationController
                 let detailVC = nav?.topViewController as? DetailViewController
-                detailVC?.detail = pokemonDetail
-                
+                detailVC?.viewModel.detail = pokemonDetail
             }
         }
     }
-
+    
     
     //MARK: - Other options
     
@@ -119,6 +131,14 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
         teamPokemonOptionsButton.layer.cornerRadius = 10
     }
     
+    func numberOfPokemons() {
+        let favCount = StoringLocalPokemon.coreDataShared.fetchPokemons().count - 1
+        let teamCount = 0
+        countFavoritePokemoneLabel.text = "\(favCount) Pokemons"
+        countTeamPokemonLabel.text = "\(teamCount) Pokemons"
+    }
+    
+    
     // MARK: - Sorted view
     @IBAction func sortedMainButton(_ sender: UIButton) {
     }
@@ -139,7 +159,7 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
 extension PokemonViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filtredPokemons = searchText.isEmpty ? pokemons : pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
+        viewModel.filtredPokemons = searchText.isEmpty ? viewModel.pokemons : viewModel.pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
             return item.name.range(of: searchText, options: .caseInsensitive) != nil
         }
         collectionViewSpace.reloadData()

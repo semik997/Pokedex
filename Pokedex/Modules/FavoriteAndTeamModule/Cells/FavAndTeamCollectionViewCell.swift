@@ -16,17 +16,22 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var firstAbilityFavAndTeamPokemonLabel: UILabel!
     @IBOutlet weak var secondAbilityFavAndTeamPokemonLabel: UILabel!
     
-//    private var currentPokemon: Pokemon.PokemonModel?
     var extentionsColor = ExtentionsColor()
-    weak var delegate: PokemonProtokol?
     weak var favoriteDelegate: PokemonsSave?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellOptions()
+        cellConfigure()
     }
     
-    func cellOptions() {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        secondAbilityFavAndTeamPokemonLabel.text = nil
+        firstAbilityFavAndTeamPokemonLabel.text = nil
+        secondAbilityFavAndTeamPokemonLabel.backgroundColor = .white
+    }
+    
+    func cellConfigure() {
         // options shadow
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 15)
@@ -38,46 +43,23 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
         // options cell
         contentView.layer.masksToBounds = true
         layer.cornerRadius = 10
+        // label Configure
         firstAbilityFavAndTeamPokemonLabel.layer.masksToBounds = true
         firstAbilityFavAndTeamPokemonLabel.layer.cornerRadius = 10
         secondAbilityFavAndTeamPokemonLabel.layer.masksToBounds = true
         secondAbilityFavAndTeamPokemonLabel.layer.cornerRadius = 10
     }
     // Load data in cell
-    func loadTeamData(pokemon: Pokemon.PokemonModel) {
-        var checkSecondAbility = false
-        let imageURL = URL(string: pokemon.sprites.front_default)
-        nameFavAndTeamPokemonLabel.text = pokemon.name
-        numberFavAndTeamPokemonLabel.text = "Nr. \(pokemon.id)"
-        favAndTeamPokemonImage.sd_setImage(with: imageURL)
-        firstAbilityFavAndTeamPokemonLabel.text = pokemon.types?[0].type?.name
-        for i in 1 ..< pokemon.types!.count {
-            secondAbilityFavAndTeamPokemonLabel.text = pokemon.types?[i].type?.name
-            checkSecondAbility = true
-        }
-        if checkSecondAbility == false {
-            secondAbilityFavAndTeamPokemonLabel.isHidden = true
-        }
-    }
-    
-    func loadData(pokemon: PokemonsSave) {
-//        var checkSecondAbility = false
+    func loadConfigure(pokemon: PokemonsSave) {
         let imageURL = URL(string: pokemon.image ?? "Not Found")
         nameFavAndTeamPokemonLabel.text = pokemon.name
-        numberFavAndTeamPokemonLabel.text = "Nr. \(pokemon.number ?? "1")"
+        numberFavAndTeamPokemonLabel.text = "No. \(pokemon.number ?? "1")"
         favAndTeamPokemonImage.sd_setImage(with: imageURL)
         firstAbilityFavAndTeamPokemonLabel.text = pokemon.firstAbility
-        secondAbilityFavAndTeamPokemonLabel.text = pokemon.secondAbility
-        let firstAbilityName = pokemon.firstAbility
-        firstAbilityFavAndTeamPokemonLabel.backgroundColor = extentionsColor.typeColor(name: firstAbilityName ?? "grass")
+        firstAbilityFavAndTeamPokemonLabel.backgroundColor = extentionsColor.typeColor(name: pokemon.firstAbility ?? "grass")
         if pokemon.secondAbility != nil {
-            let secondAbilityName = pokemon.firstAbility
-            secondAbilityFavAndTeamPokemonLabel.backgroundColor = extentionsColor.typeColor(name: secondAbilityName ?? "grass")
+            secondAbilityFavAndTeamPokemonLabel.text = pokemon.secondAbility
+            secondAbilityFavAndTeamPokemonLabel.backgroundColor = extentionsColor.typeColor(name: pokemon.secondAbility ?? "grass")
         }
-//            checkSecondAbility = true
-//        if checkSecondAbility == false {
-//            secondAbilityFavAndTeamPokemonLabel.isHidden = true
-//        }
     }
-
 }
