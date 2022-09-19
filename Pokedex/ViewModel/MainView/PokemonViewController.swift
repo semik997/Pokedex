@@ -20,13 +20,11 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     private var apiManager = ListOfPokemonAPIManager()
     private var seguesConstant = SeguesConst()
     var filtredPokemons: [Pokemon.PokemonModel] = []
-    var favoritePokemons: [Pokemon.PokemonModel] = []
     var teamPokemons: [Pokemon.PokemonModel] = []
     var pokemons: [Pokemon.PokemonModel] = [] {
         didSet {
             DispatchQueue.main.async { [self] in
                 filtredPokemons = pokemons
-                favoritePokemons = pokemons[randomPick: 6]
                 teamPokemons = pokemons[randomPick: 6]
                 collectionViewSpace.reloadData()
             }
@@ -72,10 +70,8 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
             
         } else if segue.identifier == seguesConstant.showFavorite {
             
-            let favoritePokemon = favoritePokemons
             let nav = segue.destination as? UINavigationController
             let favAndTeamVC = nav?.topViewController as? FavAndTeamCollectionViewController
-            favAndTeamVC?.favoriteDetail = favoritePokemon
             favAndTeamVC?.isFavorite = true
         }
     

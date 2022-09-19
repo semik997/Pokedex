@@ -17,12 +17,13 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var secondAbilityFavAndTeamPokemonLabel: UILabel!
     
 //    private var currentPokemon: Pokemon.PokemonModel?
+    var extentionsColor = ExtentionsColor()
     weak var delegate: PokemonProtokol?
+    weak var favoriteDelegate: PokemonsSave?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         cellOptions()
-        
     }
     
     func cellOptions() {
@@ -37,12 +38,15 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
         // options cell
         contentView.layer.masksToBounds = true
         layer.cornerRadius = 10
+        firstAbilityFavAndTeamPokemonLabel.layer.masksToBounds = true
+        firstAbilityFavAndTeamPokemonLabel.layer.cornerRadius = 10
+        secondAbilityFavAndTeamPokemonLabel.layer.masksToBounds = true
+        secondAbilityFavAndTeamPokemonLabel.layer.cornerRadius = 10
     }
     // Load data in cell
-    func loadData(pokemon: Pokemon.PokemonModel) {
+    func loadTeamData(pokemon: Pokemon.PokemonModel) {
         var checkSecondAbility = false
         let imageURL = URL(string: pokemon.sprites.front_default)
-//        currentPokemon = pokemon
         nameFavAndTeamPokemonLabel.text = pokemon.name
         numberFavAndTeamPokemonLabel.text = "Nr. \(pokemon.id)"
         favAndTeamPokemonImage.sd_setImage(with: imageURL)
@@ -55,4 +59,25 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
             secondAbilityFavAndTeamPokemonLabel.isHidden = true
         }
     }
+    
+    func loadData(pokemon: PokemonsSave) {
+//        var checkSecondAbility = false
+        let imageURL = URL(string: pokemon.image ?? "Not Found")
+        nameFavAndTeamPokemonLabel.text = pokemon.name
+        numberFavAndTeamPokemonLabel.text = "Nr. \(pokemon.number ?? "1")"
+        favAndTeamPokemonImage.sd_setImage(with: imageURL)
+        firstAbilityFavAndTeamPokemonLabel.text = pokemon.firstAbility
+        secondAbilityFavAndTeamPokemonLabel.text = pokemon.secondAbility
+        let firstAbilityName = pokemon.firstAbility
+        firstAbilityFavAndTeamPokemonLabel.backgroundColor = extentionsColor.typeColor(name: firstAbilityName ?? "grass")
+        if pokemon.secondAbility != nil {
+            let secondAbilityName = pokemon.firstAbility
+            secondAbilityFavAndTeamPokemonLabel.backgroundColor = extentionsColor.typeColor(name: secondAbilityName ?? "grass")
+        }
+//            checkSecondAbility = true
+//        if checkSecondAbility == false {
+//            secondAbilityFavAndTeamPokemonLabel.isHidden = true
+//        }
+    }
+
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController, UICollectionViewDelegate {
     
@@ -15,8 +16,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var navigationBerItem: UINavigationItem!
     @IBOutlet weak var detailInfoViewSpace: UIView!
     @IBOutlet weak var detailStaticticsViewSpace: UIView!
-    @IBOutlet weak var detailGrowthViewSpace: UIView!
-    @IBOutlet weak var colletionViewSpace: UICollectionView!
     
     // View Controller Outlets
     @IBOutlet weak var pokemonNameLabel: UILabel!
@@ -54,10 +53,15 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var totalStatisticsProgress: UIProgressView!
     
     
+    @IBOutlet weak var addToTeamButton: UIButton!
+    @IBOutlet weak var likeButton: UIBarButtonItem!
+    
+    
     let apiManager = DetailPokemonAPIManager()
     let detailAPIManager = DescriptionPokemonAPIManager()
     var extentionsColor = ExtentionsColor()
     var detail: Pokemon.PokemonModel?
+    var favoriteDetail: PokemonsSave?
     var pokemonInfo: DescriptionPokemon.DescriptionPokemonModel? {
         didSet {
             DispatchQueue.main.async { [self] in
@@ -79,12 +83,30 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         setupTypeLabelOptions()
         setBackgroundColor()
-        apiManager.fetchDetail(onCompletion: ({[weak self]
-            currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: detail?.id ?? 1)
-        
-        detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
-            descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: detail?.id ?? 1)
+        settingAddtoTeamButton()
+        fetchInformation(info: favoriteDetail)
+
     }
+    
+    func fetchInformation(info: PokemonsSave?) {
+        if info == nil {
+            apiManager.fetchDetail(onCompletion: ({[weak self]
+                currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: detail?.id ?? 1)
+            
+            detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
+                descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: detail?.id ?? 1)
+            
+        } else {
+            guard let number = Int(favoriteDetail?.number ?? "1") else { return }
+            apiManager.fetchDetail(onCompletion: ({[weak self]
+                currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: number)
+            
+            detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
+                descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: number)
+        }
+             
+    }
+    
     
     
     
@@ -178,10 +200,34 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     
     //MARK: - Other options
     
+    @IBAction func addToTeamButton(_ sender: UIButton) {
+        seveToFavorite()
+    }
+    
+    func settingAddtoTeamButton() {
+        addToTeamButton.titleLabel?.text = "Add to my team"
+        
+    }
+    
+    
+    
+    @IBAction func addToFavoriteButton(_ sender: UIBarButtonItem) {
+        
+        
+    }
+    
+    func seveToFavorite() {
+        let number: String = "\(detail?.id ?? 1)"
+        CoreDataStack.coreDataShared.saveNewPokemon(pokemon: detail!, number: number)
+    }
+    
+    
+    
+    
     @IBAction func exitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-        
+    
 
 }
 

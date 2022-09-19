@@ -291,11 +291,11 @@
                                                 <rect key="frame" x="35" y="350" width="344" height="324.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTK-GE-qg4">
-                                                        <rect key="frame" x="20" y="4" width="304" height="66"/>
+                                                        <rect key="frame" x="20" y="4" width="304" height="75"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="66" id="BWX-64-ujr"/>
+                                                            <constraint firstAttribute="height" constant="75" id="BWX-64-ujr"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -455,13 +455,18 @@
                                                     <constraint firstItem="hny-Dq-h3o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r46-lt-va1" secondAttribute="trailing" constant="8" symbolic="YES" id="qnO-20-4b9"/>
                                                     <constraint firstAttribute="bottom" secondItem="TvZ-1V-RyY" secondAttribute="bottom" constant="15" id="tW7-4Q-J0K"/>
                                                     <constraint firstItem="TvZ-1V-RyY" firstAttribute="top" secondItem="IGJ-v9-acw" secondAttribute="bottom" constant="14" id="ujg-lZ-gge"/>
-                                                    <constraint firstItem="zjX-t1-C9J" firstAttribute="top" secondItem="kTK-GE-qg4" secondAttribute="bottom" constant="14" id="vLj-6Z-q8e"/>
+                                                    <constraint firstItem="zjX-t1-C9J" firstAttribute="top" secondItem="kTK-GE-qg4" secondAttribute="bottom" constant="5" id="vLj-6Z-q8e"/>
                                                     <constraint firstItem="hny-Dq-h3o" firstAttribute="leading" secondItem="GAZ-qE-EDF" secondAttribute="leading" id="w7h-Dy-dH0"/>
                                                     <constraint firstItem="qXK-50-Hmn" firstAttribute="leading" secondItem="r46-lt-va1" secondAttribute="leading" id="wH5-ZN-ewV"/>
                                                     <constraint firstItem="Ymd-Xh-HIF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DYt-uG-i6n" secondAttribute="trailing" constant="8" symbolic="YES" id="wUr-lw-Wy3"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hny-Dq-h3o" secondAttribute="trailing" constant="20" symbolic="YES" id="xpx-qO-8f6"/>
                                                     <constraint firstItem="mJM-hR-zre" firstAttribute="baseline" secondItem="cUs-ro-Vj7" secondAttribute="baseline" constant="-1.5" id="y51-IS-bSn"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-uT-lOl">
                                                 <rect key="frame" x="35" y="705" width="344" height="251"/>
@@ -650,6 +655,11 @@
                                                     <constraint firstItem="Mga-ew-JAE" firstAttribute="leading" secondItem="wlQ-ac-unI" secondAttribute="leading" id="zwv-ZX-Y45"/>
                                                     <constraint firstItem="zpw-85-Dcw" firstAttribute="firstBaseline" secondItem="ly8-LL-OeA" secondAttribute="firstBaseline" id="zyX-J5-2KT"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoF-0I-U2b">
                                                 <rect key="frame" x="35" y="686.5" width="72" height="14.5"/>
@@ -663,6 +673,23 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSN-zH-kYW">
+                                                <rect key="frame" x="36" y="946" width="343" height="34"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                                    <fontDescription key="titleFontDescription" name="SFPro-Bold" family="SF Pro" pointSize="17"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="addToTeamButton:" destination="1ZP-km-QPJ" eventType="touchUpInside" id="ra5-od-5Ls"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
@@ -672,6 +699,7 @@
                                             <constraint firstItem="zoF-0I-U2b" firstAttribute="top" secondItem="K0y-2q-KYp" secondAttribute="bottom" constant="12" id="DNn-sh-XdD"/>
                                             <constraint firstAttribute="bottom" secondItem="c8S-uT-lOl" secondAttribute="bottom" constant="66" id="E00-Xt-o9b"/>
                                             <constraint firstItem="c8S-uT-lOl" firstAttribute="leading" secondItem="u3b-YR-u8V" secondAttribute="leading" constant="35" id="EKd-qW-ydl"/>
+                                            <constraint firstItem="tSN-zH-kYW" firstAttribute="leading" secondItem="u3b-YR-u8V" secondAttribute="leading" constant="36" id="J9c-r4-Ahf"/>
                                             <constraint firstAttribute="trailing" secondItem="c8S-uT-lOl" secondAttribute="trailing" constant="35" id="K1g-YG-5Iw"/>
                                             <constraint firstItem="c8S-uT-lOl" firstAttribute="top" secondItem="zoF-0I-U2b" secondAttribute="bottom" constant="4" id="KfQ-Dk-8hi"/>
                                             <constraint firstAttribute="trailing" secondItem="mcU-G5-L6r" secondAttribute="trailing" constant="335" id="Uu6-ff-xps"/>
@@ -684,7 +712,9 @@
                                             <constraint firstAttribute="trailing" secondItem="zoF-0I-U2b" secondAttribute="trailing" constant="307" id="efE-j8-ycx"/>
                                             <constraint firstItem="bDd-dV-cvv" firstAttribute="top" secondItem="k0v-3o-roK" secondAttribute="bottom" constant="8" symbolic="YES" id="enS-6s-MgS"/>
                                             <constraint firstItem="k0v-3o-roK" firstAttribute="leading" secondItem="u3b-YR-u8V" secondAttribute="leading" constant="35" id="gKZ-8H-dPq"/>
+                                            <constraint firstItem="tSN-zH-kYW" firstAttribute="top" relation="lessThanOrEqual" secondItem="u3b-YR-u8V" secondAttribute="top" constant="979" id="h3x-uU-xjc"/>
                                             <constraint firstAttribute="trailing" secondItem="bDd-dV-cvv" secondAttribute="trailing" constant="35" id="s0u-Dy-0qn"/>
+                                            <constraint firstAttribute="trailing" secondItem="tSN-zH-kYW" secondAttribute="trailing" constant="35" id="wgZ-Bf-FNZ"/>
                                             <constraint firstItem="K0y-2q-KYp" firstAttribute="leading" secondItem="u3b-YR-u8V" secondAttribute="leading" constant="35" id="yWE-gH-IGV"/>
                                             <constraint firstItem="k0v-3o-roK" firstAttribute="top" secondItem="u3b-YR-u8V" secondAttribute="top" constant="8" id="zaD-wA-8lb"/>
                                         </constraints>
@@ -703,6 +733,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9nC-pZ-mCb" firstAttribute="top" secondItem="tSN-zH-kYW" secondAttribute="bottom" constant="8" symbolic="YES" id="G7a-v9-K9o"/>
                             <constraint firstItem="1Nk-Pq-j6T" firstAttribute="top" secondItem="MZ7-fc-3GC" secondAttribute="bottom" constant="-92" id="f54-Qk-tUN"/>
                             <constraint firstItem="1Nk-Pq-j6T" firstAttribute="centerY" secondItem="hBL-5V-OL4" secondAttribute="centerY" id="f8z-OL-vtd"/>
                             <constraint firstItem="1Nk-Pq-j6T" firstAttribute="centerX" secondItem="hBL-5V-OL4" secondAttribute="centerX" id="hIw-rU-qrM"/>
@@ -719,10 +750,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" id="bSW-lG-X3K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addToFavorite:" destination="1ZP-km-QPJ" id="wdG-ge-d5T"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1114"/>
                     <connections>
+                        <outlet property="addToTeamButton" destination="tSN-zH-kYW" id="gft-cd-dna"/>
                         <outlet property="attackStatisticsProgress" destination="Mga-ew-JAE" id="wYj-cA-fPj"/>
                         <outlet property="basicViewControllerSpace" destination="hBL-5V-OL4" id="DGL-in-ywJ"/>
                         <outlet property="defenceStatisticsProgress" destination="wlQ-ac-unI" id="H8k-Ld-QzP"/>
@@ -732,6 +767,7 @@
                         <outlet property="detailStatisticTitleLabel" destination="zoF-0I-U2b" id="IC8-CD-P0j"/>
                         <outlet property="firstTypeAboutLabel" destination="47x-Jh-1jE" id="5CA-fj-0eH"/>
                         <outlet property="hpStatisticsProgress" destination="xrM-RT-Bt3" id="Z1Y-ld-0Wc"/>
+                        <outlet property="likeButton" destination="bSW-lG-X3K" id="be0-ME-8E4"/>
                         <outlet property="navigationBerItem" destination="Sga-bI-LwW" id="VcI-In-ywm"/>
                         <outlet property="pokemonImage" destination="bDd-dV-cvv" id="Ccb-PE-1C9"/>
                         <outlet property="pokemonNameLabel" destination="k0v-3o-roK" id="Hwi-hq-y4z"/>
@@ -886,6 +922,7 @@
                                     <outlet property="nameFavAndTeamPokemonLabel" destination="obb-6j-C9A" id="gy5-Pz-SpB"/>
                                     <outlet property="numberFavAndTeamPokemonLabel" destination="ukN-Ho-yWO" id="I1x-7c-xSf"/>
                                     <outlet property="secondAbilityFavAndTeamPokemonLabel" destination="ynv-Km-afN" id="5sf-De-im0"/>
+                                    <segue destination="zE2-kZ-EI3" kind="presentation" identifier="showDetail" modalPresentationStyle="fullScreen" id="kcd-GG-FxN"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -949,6 +986,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="kcd-GG-FxN"/>
         <segue reference="uoK-hq-dKn"/>
     </inferredMetricsTieBreakers>
     <resources>

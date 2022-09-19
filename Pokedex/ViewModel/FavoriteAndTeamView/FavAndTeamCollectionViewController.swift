@@ -11,19 +11,29 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
     
     @IBOutlet var collectionViewSpace: UICollectionView!
     var isFavorite: Bool?
+    private var seguesConstant = SeguesConst()
     var teamDetail: [Pokemon.PokemonModel] = []
     var favoriteDetail: [Pokemon.PokemonModel] = []
+    var favoritePokemons: [PokemonsSave] = []
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        favoritePokemons = CoreDataStack.coreDataShared.fetchPokemons()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         defineColor()
+//        favoritePokemons = CoreDataStack.coreDataShared.fetchPokemons()
     }
     
     // MARK: - UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFavorite == true {
-            return favoriteDetail.count
+            return favoritePokemons.count
         } else {
             return teamDetail.count
         }
@@ -48,8 +58,8 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
                 guard let favCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamAndFavCell",
                                                                        for: indexPath) as? FavAndTeamCollectionViewCell
                 else { return UICollectionViewCell() }
-                favCell.delegate = self
-                favCell.loadData(pokemon: favoriteDetail[indexPath.row])
+//                favCell.favoriteDelegate = self
+                favCell.loadData(pokemon: favoritePokemons[indexPath.row])
                 cell = favCell
             }
             return cell
@@ -71,7 +81,7 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
                                                                         for: indexPath) as? FavAndTeamCollectionViewCell
                 else { return UICollectionViewCell() }
                 teamCell.delegate = self
-                teamCell.loadData(pokemon: teamDetail[indexPath.row])
+                teamCell.loadTeamData(pokemon: teamDetail[indexPath.row])
                 cell = teamCell
             }
             return cell
@@ -118,6 +128,25 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
     @IBAction func exitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+   
+    // MARK: - Segue to Deatil View
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == seguesConstant.showDetail {
+            if let cell = sender as? FavAndTeamCollectionViewCell,
+               let indexPath = collectionViewSpace.indexPath(for: cell) {
+                
+                let pokemonDetail = favoritePokemons[indexPath.row]
+                let nav = segue.destination as? UINavigationController
+                let detailVC = nav?.topViewController as? DetailViewController
+                detailVC?.favoriteDetail = pokemonDetail
+                
+            }
+        }
+    }
+    
+    
+    
 }
 
 extension FavAndTeamCollectionViewController: PokemonProtokol {
