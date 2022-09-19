@@ -21,6 +21,14 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         defineColor()
+        subscribeToEvents()
+    }
+    
+    private func subscribeToEvents() {
+        viewModel.onReloadCollection = {
+            // main async ??
+            self.collectionViewSpace.reloadData()
+        }
     }
     
     

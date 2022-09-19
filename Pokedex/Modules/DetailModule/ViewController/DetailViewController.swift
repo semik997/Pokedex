@@ -1,3 +1,4 @@
+
 //
 //  DetailViewController.swift
 //  Pokedex
@@ -57,12 +58,19 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var likeButton: UIBarButtonItem!
     
     var viewModel = DetailViewModel()
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupAboutField()
-        setDetail()
+    var pokemonInfo: DescriptionPokemon.DescriptionPokemonModel? {
+        didSet {
+            DispatchQueue.main.async { [self] in
+                setupAboutField()
+            }
+        }
+    }
+    var pokemonDetail: DetailPokemon.DetailPokemonModel? {
+        didSet {
+            DispatchQueue.main.async { [self] in
+                setDetail()
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -70,7 +78,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         setupTypeLabelOptions()
         setBackgroundColor()
         settingAddtoTeamButton()
-        viewModel.fetchInformation(info: viewModel.favoriteDetail)
+        fetchInformation(info: viewModel.favoriteDetail)
     }
     
     //MARK: - Setting Basic View
@@ -123,12 +131,12 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func setupAboutField() {
-        let text = viewModel.pokemonInfo?.info[1].descriptionText
+        let text = pokemonInfo?.info[1].descriptionText
         descriptionAboutLabel.text = text?.replacingOccurrences(of: "\n", with: " ")
-        valueNumberAboutLabel.text = "\(viewModel.pokemonDetail?.id ?? 1)"
-        valueHeightAboutLabel.text = "\(viewModel.pokemonDetail?.height ?? 1)"
-        valueWeightAboutLabel.text = "\(viewModel.pokemonDetail?.weight ?? 1)"
-        valueSkillsAboutLabel.text = "\(viewModel.pokemonDetail?.moves[0].move.name ?? "-")"
+        valueNumberAboutLabel.text = "\(pokemonDetail?.id ?? 1)"
+        valueHeightAboutLabel.text = "\(pokemonDetail?.height ?? 1)"
+        valueWeightAboutLabel.text = "\(pokemonDetail?.weight ?? 1)"
+        valueSkillsAboutLabel.text = "\(pokemonDetail?.moves[0].move.name ?? "-")"
         
         // Checking have this pokemon in Favorite
         for item in viewModel.savePokemonCheck  {
@@ -142,36 +150,36 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     
     //MARK: - Setting Statistics View
     func setDetail() {
-        let imageURL = URL(string: viewModel.pokemonDetail?.sprites?.other?.image?.front_default ?? "-")
+        let imageURL = URL(string: pokemonDetail?.sprites?.other?.image?.front_default ?? "-")
         pokemonImage.sd_setImage(with: imageURL)
         pokemonNameLabel.text = viewModel.detail?.name
-        valueHpStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.stats?[0].base_stat ?? 1))"
-        hpStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.stats?[0].base_stat ?? 60)
-        hpStatisticsProgress.setProgress(((viewModel.pokemonDetail?.stats?[0].base_stat)! / 100), animated: false)
+        valueHpStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[0].base_stat ?? 1))"
+        hpStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[0].base_stat ?? 60)
+        hpStatisticsProgress.setProgress(((pokemonDetail?.stats?[0].base_stat)! / 100), animated: false)
         
-        valueAttackStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.stats?[1].base_stat ?? 1))"
-        attackStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.stats?[1].base_stat ?? 60)
-        attackStatisticsProgress.setProgress(((viewModel.pokemonDetail?.stats?[1].base_stat)! / 100), animated: false)
+        valueAttackStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[1].base_stat ?? 1))"
+        attackStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[1].base_stat ?? 60)
+        attackStatisticsProgress.setProgress(((pokemonDetail?.stats?[1].base_stat)! / 100), animated: false)
         
-        valueDefenceStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.stats?[2].base_stat ?? 1))"
-        defenceStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.stats?[2].base_stat ?? 60)
-        defenceStatisticsProgress.setProgress(((viewModel.pokemonDetail?.stats?[2].base_stat)! / 100), animated: false)
+        valueDefenceStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[2].base_stat ?? 1))"
+        defenceStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[2].base_stat ?? 60)
+        defenceStatisticsProgress.setProgress(((pokemonDetail?.stats?[2].base_stat)! / 100), animated: false)
         
-        valueSpAttackStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.stats?[3].base_stat ?? 1))"
-        spAttakStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.stats?[3].base_stat ?? 60)
-        spAttakStatisticsProgress.setProgress(((viewModel.pokemonDetail?.stats?[3].base_stat)! / 100), animated: false)
+        valueSpAttackStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[3].base_stat ?? 1))"
+        spAttakStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[3].base_stat ?? 60)
+        spAttakStatisticsProgress.setProgress(((pokemonDetail?.stats?[3].base_stat)! / 100), animated: false)
         
-        valueSpDefStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.stats?[4].base_stat ?? 1))"
-        spDefStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.stats?[4].base_stat ?? 60)
-        spDefStatisticsProgress.setProgress(((viewModel.pokemonDetail?.stats?[4].base_stat)! / 100), animated: false)
+        valueSpDefStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[4].base_stat ?? 1))"
+        spDefStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[4].base_stat ?? 60)
+        spDefStatisticsProgress.setProgress(((pokemonDetail?.stats?[4].base_stat)! / 100), animated: false)
         
-        valueSpeedStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.stats?[5].base_stat ?? 1))"
-        speedStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.stats?[5].base_stat ?? 60)
-        speedStatisticsProgress.setProgress(((viewModel.pokemonDetail?.stats?[5].base_stat)! / 100), animated: false)
+        valueSpeedStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[5].base_stat ?? 1))"
+        speedStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[5].base_stat ?? 60)
+        speedStatisticsProgress.setProgress(((pokemonDetail?.stats?[5].base_stat)! / 100), animated: false)
         
-        valueTotalStatisticsLabel.text = "\(Int(viewModel.pokemonDetail?.base_experience ?? 1))"
-        totalStatisticsProgress.progressTintColor = progressBar(point: viewModel.pokemonDetail?.base_experience ?? 60)
-        totalStatisticsProgress.setProgress(((viewModel.pokemonDetail?.base_experience)! / 100), animated: false)
+        valueTotalStatisticsLabel.text = "\(Int(pokemonDetail?.base_experience ?? 1))"
+        totalStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.base_experience ?? 60)
+        totalStatisticsProgress.setProgress(((pokemonDetail?.base_experience)! / 100), animated: false)
     }
     
     func progressBar(point: Float) -> UIColor {
@@ -215,6 +223,28 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     
     @IBAction func exitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func fetchInformation(info: PokemonsSave?) {
+        if info == nil {
+            viewModel.apiManager.fetchDetail(onCompletion: ({[weak self]
+                currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: viewModel.detail?.id ?? 1)
+            
+            viewModel.detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
+                descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: viewModel.detail?.id ?? 1)
+            
+            viewModel.savePokemonCheck = StoringLocalPokemon.coreDataShared.fetchPokemons()
+            
+        } else {
+            
+            guard let number = Int(viewModel.favoriteDetail?.number ?? "1") else { return }
+            
+            viewModel.apiManager.fetchDetail(onCompletion: ({[weak self]
+                currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: number)
+            
+            viewModel.detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
+                descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: number)
+        }
     }
 }
 

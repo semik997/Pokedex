@@ -17,8 +17,10 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var countTeamPokemonLabel: UILabel!
     @IBOutlet weak var countFavoritePokemoneLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var sortedButton: UIButton!
     
     var viewModel = PokemonViewModel()
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -141,6 +143,12 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // MARK: - Sorted view
     @IBAction func sortedMainButton(_ sender: UIButton) {
+        configureButtonMenu()
+    }
+    
+    func configureButtonMenu() {
+        sortedButton.menu = viewModel.demoMenu
+        sortedButton.showsMenuAsPrimaryAction = true
     }
     
     // MARK: - Team view
@@ -159,8 +167,15 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
 extension PokemonViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.filtredPokemons = searchText.isEmpty ? viewModel.pokemons : viewModel.pokemons.filter { (item: Pokemon.PokemonModel) -> Bool in
-            return item.name.range(of: searchText, options: .caseInsensitive) != nil
+        viewModel.filtredPokemons = []
+        if searchText == "" {
+            viewModel.filtredPokemons = viewModel.pokemons
+        } else {
+            for pokemon in viewModel.pokemons {
+                if pokemon.name.lowercased().contains(searchText.lowercased()) || "\(pokemon.id)".lowercased().contains(searchText.lowercased()) {
+                    viewModel.filtredPokemons.append(pokemon)
+                }
+            }
         }
         collectionViewSpace.reloadData()
     }

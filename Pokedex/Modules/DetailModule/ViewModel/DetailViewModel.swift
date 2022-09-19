@@ -19,42 +19,6 @@ class DetailViewModel: BaseViewNodel {
     var favoriteDetail: PokemonsSave?
     var teamDetail: PokemonsSave?
     var savePokemonCheck: [PokemonsSave] = []
-    var pokemonInfo: DescriptionPokemon.DescriptionPokemonModel? {
-        didSet {
-            DispatchQueue.main.async { [self] in
-                onReloadCollection?()
-            }
-        }
-    }
-    var pokemonDetail: DetailPokemon.DetailPokemonModel? {
-        didSet {
-            DispatchQueue.main.async { [self] in
-                onReloadCollection?()
-            }
-        }
-    }
-    
-    func fetchInformation(info: PokemonsSave?) {
-        if info == nil {
-            apiManager.fetchDetail(onCompletion: ({[weak self]
-                currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: detail?.id ?? 1)
-            
-            detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
-                descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: detail?.id ?? 1)
-            
-            savePokemonCheck = StoringLocalPokemon.coreDataShared.fetchPokemons()
-            
-        } else {
-            
-            guard let number = Int(favoriteDetail?.number ?? "1") else { return }
-            
-            apiManager.fetchDetail(onCompletion: ({[weak self]
-                currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: number)
-            
-            detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
-                descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: number)
-        }
-    }
     
     func seveToFavorite() {
         isFavorite = true
