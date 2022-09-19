@@ -14,7 +14,14 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
     private var seguesConstant = SeguesConst()
     var teamDetail: [Pokemon.PokemonModel] = []
     var favoriteDetail: [Pokemon.PokemonModel] = []
-    var favoritePokemons: [PokemonsSave] = []
+    var favoritePokemons: [PokemonsSave] = [] {
+        didSet {
+            DispatchQueue.main.async { [self] in
+                collectionViewSpace.reloadData()
+                
+            }
+        }
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +147,8 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
                 let nav = segue.destination as? UINavigationController
                 let detailVC = nav?.topViewController as? DetailViewController
                 detailVC?.favoriteDetail = pokemonDetail
+                detailVC?.likeButton.image = UIImage(systemName: "heart.fill")
+                detailVC?.isFavorite = true
                 
             }
         }

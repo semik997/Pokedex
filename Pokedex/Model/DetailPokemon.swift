@@ -17,6 +17,7 @@ class DetailPokemon {
     struct DetailPokemonModel: Codable {
         let base_experience: Float
         let height: Int
+        let id: Int
         let moves: [Moves]
         let sprites: Sprites?
         let stats: [Stats]?

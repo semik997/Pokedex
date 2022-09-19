@@ -54,8 +54,8 @@ class CoreDataStack {
       }
     
     
-    
-    func saveNewPokemon(pokemon: Pokemon.PokemonModel, number: String) {
+    // MARK: - Save a pokemon to Core Data
+    func saveNewPokemon(pokemon: Pokemon.PokemonModel, number: String, status: Bool) {
         
         let favPokemon = PokemonsSave(context: context)
         favPokemon.image = pokemon.sprites.front_default
@@ -65,14 +65,33 @@ class CoreDataStack {
         for i in 1 ..< pokemon.types!.count {
             favPokemon.secondAbility = pokemon.types?[i].type?.name
         }
+        favPokemon.isFavorite = status
         
         
         do
         {
             try context.save()
-            print("Saved new notifications.")
+            print("Saved new Pokemon.")
         }
         catch { fatalError("Unable to save data.") }
+    }
+    
+    
+    // MARK: - Deleting a pokemon from Core Data
+    func deleteFromData(name: String) {
+        
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PokemonsSave")
+        request.predicate = NSPredicate(format:"name = %@", "\(name)")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+            print("Deleted Pokemon")
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
     
 }

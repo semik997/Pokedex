@@ -60,8 +60,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     let apiManager = DetailPokemonAPIManager()
     let detailAPIManager = DescriptionPokemonAPIManager()
     var extentionsColor = ExtentionsColor()
+    var isFavorite: Bool?
     var detail: Pokemon.PokemonModel?
     var favoriteDetail: PokemonsSave?
+    var savePokemonCheck: [PokemonsSave] = []
     var pokemonInfo: DescriptionPokemon.DescriptionPokemonModel? {
         didSet {
             DispatchQueue.main.async { [self] in
@@ -96,7 +98,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
             detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
                 descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: detail?.id ?? 1)
             
+            savePokemonCheck = CoreDataStack.coreDataShared.fetchPokemons()
         } else {
+            
             guard let number = Int(favoriteDetail?.number ?? "1") else { return }
             apiManager.fetchDetail(onCompletion: ({[weak self]
                 currentPokemonData in self?.pokemonDetail = currentPokemonData }), forIdNumber: number)
@@ -104,7 +108,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
             detailAPIManager.fetchDescription(onCompletion: ({ [weak self]
                 descriptionPokemon in self?.pokemonInfo = descriptionPokemon }), forIdNumber: number)
         }
-             
     }
     
     
@@ -145,12 +148,17 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     func setupAboutField() {
         let text = pokemonInfo?.info[1].descriptionText
         descriptionAboutLabel.text = text?.replacingOccurrences(of: "\n", with: " ")
-        valueNumberAboutLabel.text = "\(detail?.id ?? 1)"
+        valueNumberAboutLabel.text = "\(pokemonDetail?.id ?? 1)"
         valueHeightAboutLabel.text = "\(pokemonDetail?.height ?? 1)"
         valueWeightAboutLabel.text = "\(pokemonDetail?.weight ?? 1)"
         valueSkillsAboutLabel.text = "\(pokemonDetail?.moves[0].move.name ?? "-")"
         
-        
+        for item in savePokemonCheck  {
+            if Int(item.number!) == detail?.id {
+                likeButton.image = UIImage(systemName: "heart.fill")
+                isFavorite = true
+            }
+        }
     }
     
     
@@ -198,31 +206,53 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         return color
     }
     
-    //MARK: - Other options
+    //MARK: - Add to Team
     
     @IBAction func addToTeamButton(_ sender: UIButton) {
-        seveToFavorite()
+        
     }
     
     func settingAddtoTeamButton() {
         addToTeamButton.titleLabel?.text = "Add to my team"
+        addToTeamButton.subtitleLabel?.text = "Added to you team"
+        
         
     }
     
     
-    
+    //MARK: - Add and Remove from Favorites
     @IBAction func addToFavoriteButton(_ sender: UIBarButtonItem) {
         
+        if (isFavorite != nil) == false {
+            //add to like
+            likeButton.image = UIImage(systemName: "heart.fill")
+            seveToFavorite()
+        } else {
+            //delited like
+            likeButton.image = UIImage(systemName: "heart")
+            deleteFavorite()
+        }
         
     }
     
     func seveToFavorite() {
+        isFavorite = true
         let number: String = "\(detail?.id ?? 1)"
-        CoreDataStack.coreDataShared.saveNewPokemon(pokemon: detail!, number: number)
+        CoreDataStack.coreDataShared.saveNewPokemon(pokemon: detail!, number: number, status: isFavorite ?? true)
     }
     
+    func deleteFavorite() {
+        isFavorite = false
+        var name: String?
+        if (favoriteDetail?.name != nil) {
+            name = favoriteDetail?.name
+        } else {
+            name = detail?.name
+        }
+        CoreDataStack.coreDataShared.deleteFromData(name: name ?? "")
+    }
     
-    
+    //MARK: - Other functions
     
     @IBAction func exitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
