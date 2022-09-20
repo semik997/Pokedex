@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
-struct ListOfPokemonAPIManager {
+struct ListOfPokemonNetworkManager {
     
     // MARK: - Api request
-    func fetchCurrent(onCompletion: (([Pokemon.PokemonModel]) -> Void)?) {
-        let urlString = "\(listOfPokemonLinkAPI)"
+    func fetchPokemons(onCompletion: (([Pokemon.PokemonModel]) -> Void)?) {
+        let urlString = "\(Constants.listOfPokemonLinkAPI)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
@@ -33,7 +33,6 @@ struct ListOfPokemonAPIManager {
         var currentPokemon: [Pokemon.PokemonModel] = []
         do {
             let currentPokemonData = try decoder.decode([Pokemon.PokemonModel].self, from: data)
-            
             for index in currentPokemonData {
                 currentPokemon.append(index)
             }
