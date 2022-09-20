@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct DescriptionPokemonAPIManager {
+struct DescriptionPokemonNetworkManager {
     
     func fetchDescription(onCompletion: ((DescriptionPokemon.DescriptionPokemonModel) -> Void )?, forIdNumber IdNumber: Int) {
         let urlString = "\(Constants.descriptionPokemonLinkAPI)\(IdNumber)"

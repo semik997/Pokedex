@@ -25,7 +25,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     
     // Detail Aboute Outlets
     @IBOutlet weak var descriptionAboutLabel: UILabel!
-    
     @IBOutlet weak var firstTypeAboutLabel: UILabel!
     @IBOutlet weak var secondTypeAboutLabel: UILabel!
     @IBOutlet weak var valueNumberAboutLabel: UILabel!
@@ -44,7 +43,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var valueSpDefStatisticsLabel: UILabel!
     @IBOutlet weak var valueSpeedStatisticsLabel: UILabel!
     @IBOutlet weak var valueTotalStatisticsLabel: UILabel!
-    
     @IBOutlet weak var hpStatisticsProgress: UIProgressView!
     @IBOutlet weak var attackStatisticsProgress: UIProgressView!
     @IBOutlet weak var defenceStatisticsProgress: UIProgressView!
@@ -52,7 +50,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var spDefStatisticsProgress: UIProgressView!
     @IBOutlet weak var speedStatisticsProgress: UIProgressView!
     @IBOutlet weak var totalStatisticsProgress: UIProgressView!
-    
     
     @IBOutlet weak var addToTeamButton: UIButton!
     @IBOutlet weak var likeButton: UIBarButtonItem!
@@ -69,6 +66,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
         didSet {
             DispatchQueue.main.async { [self] in
                 setDetail()
+                setupAboutField()
             }
         }
     }
@@ -90,12 +88,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
             viewControllerSpace.backgroundColor = viewModel.extentionsColor.typeColor(name: viewModel.favoriteDetail?.firstAbility ?? "grass")
             basicViewControllerSpace.backgroundColor = viewModel.extentionsColor.typeColor(name: viewModel.favoriteDetail?.firstAbility ?? "grass")
         }
-        //        navigationBerItem.standardAppearance = extentionsColor.typeColor(name: detail?.types?[0].type?.name ?? "grass")
-        //        let appearance = UINavigationBarAppearance()
-        //        appearance.configureWithDefaultBackground()
-        //        navigationBerItem.standardAppearance = appearance
     }
-    
     
     //MARK: - Setting About View
     
@@ -151,35 +144,42 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     //MARK: - Setting Statistics View
     func setDetail() {
         let imageURL = URL(string: pokemonDetail?.sprites?.other?.image?.front_default ?? "-")
+        guard let progressBarConst = pokemonDetail?.stats else { return }
+        guard let totalStatistic = pokemonDetail?.base_experience else { return }
         pokemonImage.sd_setImage(with: imageURL)
-        pokemonNameLabel.text = viewModel.detail?.name
+        if viewModel.favoriteDetail?.name != nil {
+            pokemonNameLabel.text = viewModel.favoriteDetail?.name?.capitalized
+        } else {
+            pokemonNameLabel.text = viewModel.detail?.name.capitalized
+        }
+        
         valueHpStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[0].base_stat ?? 1))"
         hpStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[0].base_stat ?? 60)
-        hpStatisticsProgress.setProgress(((pokemonDetail?.stats?[0].base_stat)! / 100), animated: false)
+        hpStatisticsProgress.setProgress((progressBarConst[0].base_stat / 100), animated: false)
         
         valueAttackStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[1].base_stat ?? 1))"
         attackStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[1].base_stat ?? 60)
-        attackStatisticsProgress.setProgress(((pokemonDetail?.stats?[1].base_stat)! / 100), animated: false)
+        attackStatisticsProgress.setProgress((progressBarConst[1].base_stat / 100), animated: false)
         
         valueDefenceStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[2].base_stat ?? 1))"
         defenceStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[2].base_stat ?? 60)
-        defenceStatisticsProgress.setProgress(((pokemonDetail?.stats?[2].base_stat)! / 100), animated: false)
+        defenceStatisticsProgress.setProgress((progressBarConst[2].base_stat / 100), animated: false)
         
         valueSpAttackStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[3].base_stat ?? 1))"
         spAttakStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[3].base_stat ?? 60)
-        spAttakStatisticsProgress.setProgress(((pokemonDetail?.stats?[3].base_stat)! / 100), animated: false)
+        spAttakStatisticsProgress.setProgress((progressBarConst[3].base_stat / 100), animated: false)
         
         valueSpDefStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[4].base_stat ?? 1))"
         spDefStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[4].base_stat ?? 60)
-        spDefStatisticsProgress.setProgress(((pokemonDetail?.stats?[4].base_stat)! / 100), animated: false)
+        spDefStatisticsProgress.setProgress((progressBarConst[4].base_stat / 100), animated: false)
         
         valueSpeedStatisticsLabel.text = "\(Int(pokemonDetail?.stats?[5].base_stat ?? 1))"
         speedStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.stats?[5].base_stat ?? 60)
-        speedStatisticsProgress.setProgress(((pokemonDetail?.stats?[5].base_stat)! / 100), animated: false)
+        speedStatisticsProgress.setProgress((progressBarConst[5].base_stat / 100), animated: false)
         
         valueTotalStatisticsLabel.text = "\(Int(pokemonDetail?.base_experience ?? 1))"
         totalStatisticsProgress.progressTintColor = progressBar(point: pokemonDetail?.base_experience ?? 60)
-        totalStatisticsProgress.setProgress(((pokemonDetail?.base_experience)! / 100), animated: false)
+        totalStatisticsProgress.setProgress((totalStatistic / 100), animated: false)
     }
     
     func progressBar(point: Float) -> UIColor {
@@ -195,8 +195,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate {
     //MARK: - Add and Remove from Team
     
     @IBAction func addToTeamButton(_ sender: UIButton) {
-        
     }
+    
     func settingAddtoTeamButton() {
         addToTeamButton.setTitle("Add to my team", for: .normal)
         addToTeamButton.setTitle("Remove from team", for: .selected)

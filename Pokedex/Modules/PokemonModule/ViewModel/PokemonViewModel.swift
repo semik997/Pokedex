@@ -16,7 +16,7 @@ class BaseViewNodel: NSObject {
 
 class PokemonViewModel: BaseViewNodel {
     
-    private var apiManager = ListOfPokemonAPIManager()
+    private var apiManager = ListOfPokemonNetworkManager()
     var filtredPokemons: [Pokemon.PokemonModel] = []
     var teamPokemons: [Pokemon.PokemonModel] = []
     var pokemons: [Pokemon.PokemonModel] = [] {
@@ -27,7 +27,7 @@ class PokemonViewModel: BaseViewNodel {
             }
         }
     }
-    
+    // load pokemons list
     func fetchPokemons() {
         onShowHud?()
         apiManager.fetchPokemons(onCompletion: { [weak self] currentPokemonData in
@@ -35,6 +35,8 @@ class PokemonViewModel: BaseViewNodel {
             self?.pokemons = currentPokemonData
         })
     }
+    
+    // setting sorted menu
     var menuItems: [UIAction] {
         return [
             UIAction(title: "Alphabetically ascending", image: UIImage(systemName: "arrow.up"), handler: { action in

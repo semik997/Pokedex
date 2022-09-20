@@ -16,7 +16,7 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var firstAbilityFavAndTeamPokemonLabel: UILabel!
     @IBOutlet weak var secondAbilityFavAndTeamPokemonLabel: UILabel!
     
-    var extentionsColor = ExtentionsColor()
+    var extentionsColor = ExtensionColor()
     weak var favoriteDelegate: PokemonsSave?
     
     override func awakeFromNib() {
@@ -31,8 +31,8 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
         secondAbilityFavAndTeamPokemonLabel.backgroundColor = .white
     }
     
+    // options shadow
     func cellConfigure() {
-        // options shadow
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 15)
         layer.shadowRadius = 15
@@ -49,10 +49,10 @@ class FavAndTeamCollectionViewCell: UICollectionViewCell {
         secondAbilityFavAndTeamPokemonLabel.layer.masksToBounds = true
         secondAbilityFavAndTeamPokemonLabel.layer.cornerRadius = 10
     }
-    // Load data in cell
+    // Load cell content
     func loadConfigure(pokemon: PokemonsSave) {
         let imageURL = URL(string: pokemon.image ?? "Not Found")
-        nameFavAndTeamPokemonLabel.text = pokemon.name
+        nameFavAndTeamPokemonLabel.text = pokemon.name?.capitalized
         numberFavAndTeamPokemonLabel.text = "No. \(pokemon.number ?? "1")"
         favAndTeamPokemonImage.sd_setImage(with: imageURL)
         firstAbilityFavAndTeamPokemonLabel.text = pokemon.firstAbility

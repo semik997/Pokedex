@@ -2,7 +2,7 @@
 //  PokemonsSave+CoreDataProperties.swift
 //  
 //
-//  Created by Sem Koliesnikov on 19/09/2022.
+//  Created by Sem Koliesnikov on 20/09/2022.
 //
 //
 
@@ -18,6 +18,7 @@ extension PokemonsSave {
 
     @NSManaged public var firstAbility: String?
     @NSManaged public var image: String?
+    @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var number: String?
     @NSManaged public var secondAbility: String?

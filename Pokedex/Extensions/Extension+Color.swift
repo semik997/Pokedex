@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ExtentionsColor {
+class ExtensionColor {
     
     //MARK: - Set color to types
     
@@ -54,7 +54,7 @@ class ExtentionsColor {
     }
 }
 
-extension ExtentionsColor {
+extension ExtensionColor {
     enum TypesPokemon {
         case grass
         case poison

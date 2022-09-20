@@ -21,8 +21,8 @@ class PokemonViewCell: UICollectionViewCell {
     @IBOutlet weak var pokemonSecondAbilityLabel: UILabel!
     
     weak var delegate: PokemonProtokol?
-    var extentionsColor = ExtentionsColor()
-    var color = ExtentionsColor.TypesPokemon.bug
+    var extentionsColor = ExtensionColor()
+    var color = ExtensionColor.TypesPokemon.bug
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +36,7 @@ class PokemonViewCell: UICollectionViewCell {
         pokemonSecondAbilityLabel.backgroundColor = .white
     }
     
+    // options shadow
     func cellConfigure() {
         // options shadow
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
@@ -55,10 +56,10 @@ class PokemonViewCell: UICollectionViewCell {
         pokemonSecondAbilityLabel.layer.cornerRadius = 10
     }
     
-    // Load data in cell
+    // Load cell content
     func loadConfigure(pokemon: Pokemon.PokemonModel) {
         let imageURL = URL(string: pokemon.sprites.front_default)
-        pokemonNameLabel.text = pokemon.name
+        pokemonNameLabel.text = pokemon.name.capitalized
         pokemonIdLabel.text = "No. \(pokemon.id)"
         pokemonImage.sd_setImage(with: imageURL)
         let firstAbilityName = pokemon.types?[0].type?.name

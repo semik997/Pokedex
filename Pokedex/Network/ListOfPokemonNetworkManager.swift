@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
-struct ListOfPokemonAPIManager {
+struct ListOfPokemonNetworkManager {
     
     // MARK: - Api request
     func fetchPokemons(onCompletion: (([Pokemon.PokemonModel]) -> Void)?) {

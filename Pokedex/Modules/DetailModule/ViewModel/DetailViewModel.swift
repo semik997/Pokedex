@@ -10,9 +10,9 @@ import UIKit
 
 class DetailViewModel: BaseViewNodel {
     
-    let apiManager = DetailPokemonAPIManager()
-    let detailAPIManager = DescriptionPokemonAPIManager()
-    var extentionsColor = ExtentionsColor()
+    let apiManager = DetailPokemonNetworkManager()
+    let detailAPIManager = DescriptionPokemonNetworkManager()
+    var extentionsColor = ExtensionColor()
     var isFavorite: Bool?
     var isTeam: Bool?
     var detail: Pokemon.PokemonModel?
@@ -23,7 +23,8 @@ class DetailViewModel: BaseViewNodel {
     func seveToFavorite() {
         isFavorite = true
         let number = "\(detail?.id ?? 1)"
-        StoringLocalPokemon.coreDataShared.saveNewPokemon(pokemon: detail!, number: number, status: isFavorite ?? true)
+        guard let detail = detail else { return }
+        StoringLocalPokemon.coreDataShared.saveNewPokemon(pokemon: detail, number: number, status: isFavorite ?? true)
     }
     
     func deleteFavorite() {

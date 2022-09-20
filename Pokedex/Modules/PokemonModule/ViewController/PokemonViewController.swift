@@ -20,7 +20,7 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var sortedButton: UIButton!
     
     var viewModel = PokemonViewModel()
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,11 +42,9 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     private func subscribeToEvents() {
         viewModel.onReloadCollection = {
-            // main async ??
             self.collectionViewSpace.reloadData()
         }
         viewModel.onShowHud = {
-            // async ??
             self.spinner.startAnimating()
         }
         viewModel.onDismissHud = {
@@ -158,8 +156,6 @@ class PokemonViewController: UIViewController, UICollectionViewDelegate, UIColle
     // MARK: - Favorite view
     @IBAction func favoritePokemonButton(_ sender: Any) {
     }
-    
-    
 }
 
 // MARK: - Setting search bar
@@ -172,7 +168,8 @@ extension PokemonViewController: UISearchBarDelegate {
             viewModel.filtredPokemons = viewModel.pokemons
         } else {
             for pokemon in viewModel.pokemons {
-                if pokemon.name.lowercased().contains(searchText.lowercased()) || "\(pokemon.id)".lowercased().contains(searchText.lowercased()) {
+                if pokemon.name.lowercased().contains(searchText.lowercased()) || "\(pokemon.id)".lowercased().contains(searchText.lowercased()) ||
+                    !((pokemon.types?[0].type?.name?.lowercased().contains(searchText.lowercased())) == false) {
                     viewModel.filtredPokemons.append(pokemon)
                 }
             }

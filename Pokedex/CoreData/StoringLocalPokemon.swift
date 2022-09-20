@@ -56,16 +56,16 @@ class StoringLocalPokemon {
     // MARK: - Save a pokemon to Core Data
     func saveNewPokemon(pokemon: Pokemon.PokemonModel, number: String, status: Bool) {
         
+        let count = pokemon.types!.count
         let favPokemon = PokemonsSave(context: context)
         favPokemon.image = pokemon.sprites.front_default
         favPokemon.name = pokemon.name
         favPokemon.number = number
         favPokemon.firstAbility = pokemon.types?[0].type?.name
-        for i in 1 ..< pokemon.types!.count {
+        for i in 1 ..< count {
             favPokemon.secondAbility = pokemon.types?[i].type?.name
         }
         favPokemon.isFavorite = status
-        
         
         do
         {

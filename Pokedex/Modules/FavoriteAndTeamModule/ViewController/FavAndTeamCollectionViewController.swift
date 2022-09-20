@@ -26,7 +26,6 @@ class FavAndTeamCollectionViewController: UICollectionViewController {
     
     private func subscribeToEvents() {
         viewModel.onReloadCollection = {
-            // main async ??
             self.collectionViewSpace.reloadData()
         }
     }
