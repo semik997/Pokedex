@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="77u-1X-D3G">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="77u-1X-D3G">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -25,17 +25,17 @@
                         <viewControllerLayoutGuide type="bottom" id="Cft-gz-d4c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EKy-Kf-VYZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokédex" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEU-9Y-H69">
-                                <rect key="frame" x="16" y="82" width="134" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Pokédex" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEU-9Y-H69">
+                                <rect key="frame" x="16" y="81.333333333333329" width="320" height="39.666666666666671"/>
                                 <fontDescription key="fontDescription" name="SFPro-Semibold" family="SF Pro" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykU-Xa-yIh">
-                                <rect key="frame" x="340" y="48" width="54" height="34"/>
+                                <rect key="frame" x="305" y="47" width="54" height="34.333333333333343"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.up.arrow.down" catalog="system">
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
@@ -45,37 +45,60 @@
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" placeholder="Enter a pokemon name" translatesAutoresizingMaskIntoConstraints="NO" id="zSP-MI-CS1">
-                                <rect key="frame" x="0.0" y="122" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="121" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F81-ZF-2AQ">
-                                <rect key="frame" x="20" y="187" width="167" height="100"/>
-                                <color key="backgroundColor" red="0.72941176470000002" green="0.74509803919999995" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="My Team">
-                                    <fontDescription key="titleFontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="teamPokemonButton:" destination="77u-1X-D3G" eventType="touchUpInside" id="v7j-Z9-jrl"/>
-                                    <segue destination="pic-s3-KnP" kind="presentation" identifier="showTeam" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="uoK-hq-dKn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-YU-6H7">
-                                <rect key="frame" x="227" y="187" width="167" height="100"/>
-                                <color key="backgroundColor" red="0.72941176470000002" green="0.74509803919999995" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Favorite">
-                                    <fontDescription key="titleFontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="favoritePokemonButton:" destination="77u-1X-D3G" eventType="touchUpInside" id="Ha8-0s-dfQ"/>
-                                    <segue destination="pic-s3-KnP" kind="presentation" identifier="showFavorite" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="WIL-xq-Npd"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nmX-wO-Zzx">
+                                <rect key="frame" x="0.0" y="177" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F81-ZF-2AQ">
+                                        <rect key="frame" x="19" y="0.0" width="150" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72941176470000002" green="0.74509803919999995" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="My Team">
+                                            <fontDescription key="titleFontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="teamPokemonButton:" destination="77u-1X-D3G" eventType="touchUpInside" id="v7j-Z9-jrl"/>
+                                            <segue destination="pic-s3-KnP" kind="presentation" identifier="showTeam" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="uoK-hq-dKn"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ff-dR-Yaf">
+                                        <rect key="frame" x="32" y="63" width="98" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-YU-6H7">
+                                        <rect key="frame" x="208" y="0.0" width="150" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72941176470000002" green="0.74509803919999995" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Favorite">
+                                            <fontDescription key="titleFontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="favoritePokemonButton:" destination="77u-1X-D3G" eventType="touchUpInside" id="Ha8-0s-dfQ"/>
+                                            <segue destination="pic-s3-KnP" kind="presentation" identifier="showFavorite" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="WIL-xq-Npd"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQ6-5A-Raj">
+                                        <rect key="frame" x="220" y="63" width="104" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uLd-ol-T6X">
-                                <rect key="frame" x="0.0" y="305" width="414" height="591"/>
+                                <rect key="frame" x="0.0" y="304" width="375" height="508"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="4Fj-RF-P1f">
                                     <size key="itemSize" width="340" height="70"/>
@@ -84,13 +107,13 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="gkN-ed-zNx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="591"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="508"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="color" systemColor="systemCyanColor"/>
                                 </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainCell" id="80L-jc-qc1" customClass="PokemonViewCell" customModule="Pokedex" customModuleProvider="target">
-                                        <rect key="frame" x="37" y="0.0" width="340" height="70"/>
+                                        <rect key="frame" x="17.666666666666668" y="0.0" width="340" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ev8-RC-DBl">
                                             <rect key="frame" x="0.0" y="0.0" width="340" height="70"/>
@@ -126,7 +149,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmI-2L-68m">
-                                                    <rect key="frame" x="89" y="33" width="37" height="20.5"/>
+                                                    <rect key="frame" x="89" y="33" width="37" height="20.666666666666671"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -189,62 +212,31 @@
                                     <outlet property="delegate" destination="77u-1X-D3G" id="m0g-ih-Nlz"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ff-dR-Yaf">
-                                <rect key="frame" x="30" y="249" width="6" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Ltq-ji-ycd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gms-Dp-bkE">
-                                <rect key="frame" x="316" y="249" width="6" height="17.5"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="cEU-9Y-H69" secondAttribute="trailing" constant="23" id="0qK-3J-JN9"/>
+                            <constraint firstItem="cEU-9Y-H69" firstAttribute="top" secondItem="ykU-Xa-yIh" secondAttribute="bottom" id="36A-3W-ObI"/>
                             <constraint firstItem="ykU-Xa-yIh" firstAttribute="top" secondItem="EKy-Kf-VYZ" secondAttribute="topMargin" id="3oo-EG-hMT"/>
-                            <constraint firstItem="Cft-gz-d4c" firstAttribute="top" relation="lessThanOrEqual" secondItem="F81-ZF-2AQ" secondAttribute="bottom" constant="575" id="4xI-zW-F6d"/>
-                            <constraint firstItem="0Qe-YU-6H7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EKy-Kf-VYZ" secondAttribute="leading" constant="227" id="5QB-qp-QZp"/>
-                            <constraint firstItem="F81-ZF-2AQ" firstAttribute="top" relation="lessThanOrEqual" secondItem="n5E-La-TAt" secondAttribute="bottom" constant="139" id="7IF-rZ-0xA"/>
-                            <constraint firstItem="0Qe-YU-6H7" firstAttribute="leading" secondItem="gms-Dp-bkE" secondAttribute="trailing" constant="-95" id="9tM-4o-u2Z"/>
-                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="0Qe-YU-6H7" secondAttribute="trailing" constant="20" id="D6E-z9-fvr"/>
-                            <constraint firstItem="Cft-gz-d4c" firstAttribute="top" relation="lessThanOrEqual" secondItem="0Qe-YU-6H7" secondAttribute="bottom" constant="575" id="Egy-Ju-w4h"/>
-                            <constraint firstItem="5ff-dR-Yaf" firstAttribute="leading" secondItem="EKy-Kf-VYZ" secondAttribute="leadingMargin" constant="10" id="FrR-kn-wEJ"/>
-                            <constraint firstItem="cEU-9Y-H69" firstAttribute="top" secondItem="n5E-La-TAt" secondAttribute="bottom" constant="34" id="GpK-b6-3Ke"/>
                             <constraint firstItem="uLd-ol-T6X" firstAttribute="leading" secondItem="EKy-Kf-VYZ" secondAttribute="leading" id="I2a-Vt-oFi"/>
-                            <constraint firstItem="5ff-dR-Yaf" firstAttribute="top" secondItem="F81-ZF-2AQ" secondAttribute="bottom" constant="-38" id="Irm-sh-dMA"/>
                             <constraint firstItem="uLd-ol-T6X" firstAttribute="top" secondItem="n5E-La-TAt" secondAttribute="bottom" constant="257" id="Kfu-FE-geh"/>
-                            <constraint firstItem="cEU-9Y-H69" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EKy-Kf-VYZ" secondAttribute="leading" constant="16" id="LYs-b2-ank"/>
                             <constraint firstAttribute="bottom" secondItem="uLd-ol-T6X" secondAttribute="bottom" id="N1M-gI-Jlg"/>
-                            <constraint firstItem="gms-Dp-bkE" firstAttribute="top" secondItem="0Qe-YU-6H7" secondAttribute="bottom" constant="-38" id="NAG-HA-Mec"/>
                             <constraint firstItem="Cft-gz-d4c" firstAttribute="top" relation="lessThanOrEqual" secondItem="ykU-Xa-yIh" secondAttribute="bottom" constant="780" id="NWl-T6-f15"/>
-                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="F81-ZF-2AQ" secondAttribute="trailing" constant="227" id="Nbk-1j-S1d"/>
-                            <constraint firstItem="zSP-MI-CS1" firstAttribute="top" secondItem="cEU-9Y-H69" secondAttribute="bottom" id="Nfu-CM-kfW"/>
-                            <constraint firstItem="0Qe-YU-6H7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="F81-ZF-2AQ" secondAttribute="trailing" constant="40" id="Ozb-Ea-Hpz"/>
                             <constraint firstAttribute="trailing" secondItem="zSP-MI-CS1" secondAttribute="trailing" id="QSH-wV-6G3"/>
                             <constraint firstItem="Cft-gz-d4c" firstAttribute="top" relation="lessThanOrEqual" secondItem="zSP-MI-CS1" secondAttribute="bottom" constant="684" id="T6J-Mv-424"/>
-                            <constraint firstItem="uLd-ol-T6X" firstAttribute="top" secondItem="5ff-dR-Yaf" secondAttribute="bottom" constant="36" id="Vx4-vL-kfZ"/>
-                            <constraint firstItem="0Qe-YU-6H7" firstAttribute="top" relation="lessThanOrEqual" secondItem="n5E-La-TAt" secondAttribute="bottom" constant="139" id="XA3-cG-wB3"/>
-                            <constraint firstItem="gms-Dp-bkE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F81-ZF-2AQ" secondAttribute="trailing" constant="8" symbolic="YES" id="bDW-Yt-ERa"/>
+                            <constraint firstItem="zSP-MI-CS1" firstAttribute="top" secondItem="cEU-9Y-H69" secondAttribute="bottom" id="cBQ-5a-rQm"/>
                             <constraint firstItem="zSP-MI-CS1" firstAttribute="leading" secondItem="EKy-Kf-VYZ" secondAttribute="leading" id="cqT-op-pGK"/>
-                            <constraint firstItem="F81-ZF-2AQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EKy-Kf-VYZ" secondAttribute="leading" constant="20" symbolic="YES" id="e1i-Gx-dF6"/>
                             <constraint firstItem="ykU-Xa-yIh" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EKy-Kf-VYZ" secondAttribute="leading" constant="340" id="e4Q-Pv-Hoy"/>
                             <constraint firstItem="ykU-Xa-yIh" firstAttribute="top" secondItem="n5E-La-TAt" secondAttribute="bottom" id="gCy-KK-x9q"/>
                             <constraint firstItem="zSP-MI-CS1" firstAttribute="top" relation="lessThanOrEqual" secondItem="n5E-La-TAt" secondAttribute="bottom" constant="74" id="hps-eu-qdO"/>
-                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="cEU-9Y-H69" secondAttribute="trailing" constant="264" id="lII-ef-ATM"/>
+                            <constraint firstItem="cEU-9Y-H69" firstAttribute="leading" secondItem="EKy-Kf-VYZ" secondAttribute="leadingMargin" id="k4d-ZN-Gxa"/>
                             <constraint firstAttribute="trailing" secondItem="uLd-ol-T6X" secondAttribute="trailing" id="sQh-CU-mBC"/>
-                            <constraint firstItem="0Qe-YU-6H7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5ff-dR-Yaf" secondAttribute="trailing" constant="8" symbolic="YES" id="ulp-zo-inz"/>
                             <constraint firstItem="ykU-Xa-yIh" firstAttribute="trailing" secondItem="EKy-Kf-VYZ" secondAttribute="trailingMargin" id="vqM-ES-Q8d"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionViewSpace" destination="uLd-ol-T6X" id="3En-pn-yM4"/>
-                        <outlet property="countFavoritePokemoneLabel" destination="gms-Dp-bkE" id="6K3-aP-Xaq"/>
+                        <outlet property="countFavoritePokemoneLabel" destination="QQ6-5A-Raj" id="3i5-5j-4tH"/>
                         <outlet property="countTeamPokemonLabel" destination="5ff-dR-Yaf" id="z31-0B-PfI"/>
                         <outlet property="favoritePokemonOptionsButton" destination="0Qe-YU-6H7" id="9wG-QM-eLf"/>
                         <outlet property="pokemonMainSearchBar" destination="zSP-MI-CS1" id="nSf-RG-sXp"/>
@@ -256,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oGj-R1-jZY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1149.2753623188407" y="-45.535714285714285"/>
+            <point key="canvasLocation" x="-1149.5999999999999" y="-45.812807881773402"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="1NW-vD-MTm">
@@ -271,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nk-Pq-j6T">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1114"/>
+                                <rect key="frame" x="0.0" y="-1" width="414" height="1115"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-YR-u8V">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1022"/>
@@ -295,7 +287,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0y-2q-KYp">
-                                                <rect key="frame" x="35" y="350" width="344" height="324.5"/>
+                                                <rect key="frame" x="35" y="350" width="344" height="324.66666666666674"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Found" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTK-GE-qg4">
                                                         <rect key="frame" x="20" y="4" width="304" height="75"/>
@@ -307,7 +299,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjX-t1-C9J">
-                                                        <rect key="frame" x="20" y="84" width="33.5" height="21"/>
+                                                        <rect key="frame" x="19.999999999999996" y="84" width="33.666666666666657" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="S9V-Z5-i1Z"/>
                                                         </constraints>
@@ -316,7 +308,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-uG-i6n">
-                                                        <rect key="frame" x="20" y="119" width="54" height="21"/>
+                                                        <rect key="frame" x="19.999999999999996" y="119" width="55.666666666666657" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="dbz-QZ-0kJ"/>
                                                         </constraints>
@@ -325,13 +317,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Height" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJM-hR-zre">
-                                                        <rect key="frame" x="20" y="154" width="44" height="18.5"/>
+                                                        <rect key="frame" x="19.999999999999996" y="154" width="45.666666666666657" height="18.5"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXK-50-Hmn">
-                                                        <rect key="frame" x="20" y="186.5" width="46.5" height="21"/>
+                                                        <rect key="frame" x="19.999999999999996" y="186.5" width="48.666666666666657" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="prX-dz-cNW"/>
                                                         </constraints>
@@ -340,7 +332,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r46-lt-va1">
-                                                        <rect key="frame" x="20" y="221.5" width="73" height="21"/>
+                                                        <rect key="frame" x="20" y="221.5" width="74.666666666666671" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="YK4-Wb-AO5"/>
                                                         </constraints>
@@ -349,7 +341,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGJ-v9-acw">
-                                                        <rect key="frame" x="20" y="256.5" width="26" height="21"/>
+                                                        <rect key="frame" x="20" y="256.5" width="25" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="dZi-6t-RTL"/>
                                                         </constraints>
@@ -364,49 +356,49 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLx-8Y-1k6">
-                                                        <rect key="frame" x="182" y="87" width="56" height="18.5"/>
+                                                        <rect key="frame" x="182" y="87" width="56" height="18.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-Xh-HIF">
-                                                        <rect key="frame" x="181.5" y="119.5" width="8" height="20.5"/>
+                                                        <rect key="frame" x="181.66666666666666" y="118.33333333333333" width="8" height="20.666666666666671"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUs-ro-Vj7">
-                                                        <rect key="frame" x="181.5" y="154" width="8" height="21"/>
+                                                        <rect key="frame" x="181.66666666666666" y="154" width="8" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhY-WF-mCj">
-                                                        <rect key="frame" x="181.5" y="187" width="8" height="20.5"/>
+                                                        <rect key="frame" x="181.66666666666666" y="187" width="8" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hny-Dq-h3o">
-                                                        <rect key="frame" x="181.5" y="219.5" width="8" height="20.5"/>
+                                                        <rect key="frame" x="181.66666666666666" y="219.5" width="8" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAZ-qE-EDF">
-                                                        <rect key="frame" x="181.5" y="256.5" width="8" height="20.5"/>
+                                                        <rect key="frame" x="181.66666666666666" y="256.5" width="8" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47x-Jh-1jE">
-                                                        <rect key="frame" x="246" y="87" width="56" height="18.5"/>
+                                                        <rect key="frame" x="246" y="87" width="56" height="18.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyW-9v-kCp">
-                                                        <rect key="frame" x="181.5" y="290" width="8" height="21.5"/>
+                                                        <rect key="frame" x="181.66666666666666" y="290" width="8" height="21.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -479,109 +471,109 @@
                                                 <rect key="frame" x="35" y="705" width="344" height="251"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-85-Dcw">
-                                                        <rect key="frame" x="24" y="25" width="44" height="20.5"/>
+                                                        <rect key="frame" x="23.999999999999996" y="25" width="45.666666666666657" height="21.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Defence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eam-UG-DxB">
-                                                        <rect key="frame" x="24" y="83" width="56" height="20.5"/>
+                                                        <rect key="frame" x="23.999999999999996" y="83" width="57.666666666666657" height="21.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sp.Atk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPQ-ka-aPx">
-                                                        <rect key="frame" x="24" y="111.5" width="45" height="21.5"/>
+                                                        <rect key="frame" x="24" y="112.66666666666663" width="45" height="20.333333333333343"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sp.Def" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgr-fl-Ztt">
-                                                        <rect key="frame" x="24" y="141" width="56" height="19.5"/>
+                                                        <rect key="frame" x="23.999999999999996" y="141" width="57.666666666666657" height="20"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrN-cM-hXG">
-                                                        <rect key="frame" x="24" y="168.5" width="56" height="24"/>
+                                                        <rect key="frame" x="23.999999999999996" y="169" width="57.666666666666657" height="24"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-Sp-vMc">
-                                                        <rect key="frame" x="24" y="200.5" width="56" height="18"/>
+                                                        <rect key="frame" x="23.999999999999996" y="201" width="57.666666666666657" height="18"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ly8-LL-OeA">
-                                                        <rect key="frame" x="88" y="23" width="0.0" height="24"/>
+                                                        <rect key="frame" x="89.666666666666671" y="22.666666666666629" width="0.0" height="24.666666666666671"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zF-X5-rew">
-                                                        <rect key="frame" x="24" y="53.5" width="44" height="21.5"/>
+                                                        <rect key="frame" x="24" y="54.666666666666636" width="44" height="20.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="15"/>
                                                         <color key="textColor" red="0.67450980390000004" green="0.69803921570000005" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0v-4q-HXg">
-                                                        <rect key="frame" x="88" y="51.5" width="0.0" height="25"/>
+                                                        <rect key="frame" x="89.666666666666671" y="52.333333333333378" width="0.0" height="23.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdB-im-vbK">
-                                                        <rect key="frame" x="88" y="81" width="0.0" height="24"/>
+                                                        <rect key="frame" x="89.666666666666671" y="80.666666666666629" width="0.0" height="24.666666666666671"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8r9-G3-Yc3">
-                                                        <rect key="frame" x="88" y="109.5" width="0.0" height="25"/>
+                                                        <rect key="frame" x="89.666666666666671" y="110.33333333333337" width="0.0" height="23.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHB-7m-HD4">
-                                                        <rect key="frame" x="88" y="162" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="89.666666666666671" y="161.66666666666663" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a34-Td-DXS">
-                                                        <rect key="frame" x="88" y="166.5" width="0.0" height="27.5"/>
+                                                        <rect key="frame" x="89.666666666666671" y="166.66666666666663" width="0.0" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzX-4E-7QF">
-                                                        <rect key="frame" x="88" y="198.5" width="0.0" height="21.5"/>
+                                                        <rect key="frame" x="89.666666666666671" y="198.66666666666663" width="0.0" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xrM-RT-Bt3">
-                                                        <rect key="frame" x="128" y="33" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="33" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mga-ew-JAE">
-                                                        <rect key="frame" x="128" y="62" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="62" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wlQ-ac-unI">
-                                                        <rect key="frame" x="128" y="91" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="91" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="l2f-2V-lZM">
-                                                        <rect key="frame" x="128" y="120" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="120" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ElV-eb-KmT">
-                                                        <rect key="frame" x="128" y="178" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="178" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vLp-jH-iQc">
-                                                        <rect key="frame" x="128" y="207" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="207" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bJV-In-u9n">
-                                                        <rect key="frame" x="128" y="148" width="191" height="4"/>
+                                                        <rect key="frame" x="129.66666666666663" y="148" width="189.33333333333337" height="4"/>
                                                     </progressView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -669,19 +661,19 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoF-0I-U2b">
-                                                <rect key="frame" x="35" y="686.5" width="64.5" height="14.5"/>
+                                                <rect key="frame" x="35" y="686.66666666666663" width="72" height="14.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="12"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcU-G5-L6r">
-                                                <rect key="frame" x="35" y="331.5" width="41" height="14.5"/>
+                                                <rect key="frame" x="35" y="331.66666666666669" width="44" height="14.333333333333314"/>
                                                 <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="12"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSN-zH-kYW">
-                                                <rect key="frame" x="36" y="946" width="343" height="34"/>
+                                                <rect key="frame" x="36" y="948" width="343" height="34"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Button">
@@ -808,7 +800,7 @@
             <objects>
                 <collectionViewController id="6AY-bb-qcg" customClass="FavAndTeamCollectionViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Cq6-ju-Mcm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemRedColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z2x-2d-XUW">
@@ -819,7 +811,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="TeamAndFavTitleCell" id="5kV-VN-WTN" customClass="FavAndTeamTitleCollectionViewCell" customModule="Pokedex" customModuleProvider="target">
-                                <rect key="frame" x="35.5" y="0.0" width="343" height="41"/>
+                                <rect key="frame" x="16" y="0.0" width="343" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9tp-Zk-wGh">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="41"/>
@@ -846,7 +838,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="TeamAndFavCell" id="spq-Of-Xpl" customClass="FavAndTeamCollectionViewCell" customModule="Pokedex" customModuleProvider="target">
-                                <rect key="frame" x="37" y="51" width="340" height="70"/>
+                                <rect key="frame" x="17.666666666666668" y="51" width="340" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wZh-uM-Kz4">
                                     <rect key="frame" x="0.0" y="0.0" width="340" height="70"/>
@@ -859,7 +851,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukN-Ho-yWO">
-                                            <rect key="frame" x="95" y="36" width="51.5" height="19.5"/>
+                                            <rect key="frame" x="95" y="36" width="51.666666666666657" height="19.666666666666671"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="51.5" id="gy7-Go-yA0"/>
                                             </constraints>
@@ -961,7 +953,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pic-s3-KnP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1F5-Zq-cSE">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -979,7 +971,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zE2-kZ-EI3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.10000000000000001" contentMode="scaleToFill" id="87O-uU-aPb">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
